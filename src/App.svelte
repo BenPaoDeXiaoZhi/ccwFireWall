@@ -19,9 +19,10 @@
 </script>
 
 <main
-  style="left: {offset.x}px; top: {offset.y}px; height: {show
-    ? '200px'
-    : 'fit-content'}"
+  style:left="{offset.x}px"
+  style:top="{offset.y}px"
+  style:height={show ? '200px' : 'fit-content'}
+  style:width={show ? '400px' : '100px'}
 >
   <button
     id="close"
@@ -70,13 +71,12 @@
     touch-action: none;
   }
   main {
-    width: 400px;
-    height: 300px;
     border-radius: 10px;
     border: gray 1px solid;
     position: fixed;
     overflow: hidden;
     z-index: 99999;
+    transition: 0.2s;
   }
   #close {
     position: absolute;
