@@ -17,7 +17,11 @@ export default defineConfig(({mode})=>{return {
         name: "CCW Firewall",
         version: `${VERSION}-${new Date().toGMTString()}`,
         author: "Meng Fuzi",
-        match: "https://*.ccw.site/*",
+        match: [
+          "https://*.ccw.site/gandi/*",
+          "https://*.ccw.site/project/*",
+          "https://*.ccw.site/player/*"
+        ],
         grant: [
           "none",
         ],
