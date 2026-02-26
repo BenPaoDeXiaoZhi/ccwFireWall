@@ -46,7 +46,9 @@
     CCW Check
   </header>
   {#if show}
-    <div id="body"></div>
+    <div id="body">
+
+    </div>
   {/if}
 </main>
 
@@ -88,5 +90,7 @@
     width: 100%;
     height: 100%;
     background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 0.2fr 0.8fr;
   }
 </style>
