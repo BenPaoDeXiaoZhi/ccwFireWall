@@ -7,11 +7,6 @@ permissions:
 on:
     push:
         branches: ['main']
-        paths:
-            - 'src/**'
-            - 'public/**'
-            - 'assets/**'
-            - '.github/workflows/build.yml'
 
 jobs:
     build:
