@@ -67,9 +67,11 @@
     cursor: move;
     user-select: none;
     transition: 0.5s;
+    touch-action: none;
   }
   main {
-    width: 150px;
+    width: 400px;
+    height: 300px;
     border-radius: 10px;
     border: gray 1px solid;
     position: fixed;
