@@ -9,7 +9,7 @@
     y: 20,
   });
   const plugins = [
-    new Plugin("test","",NavBar);
+    new Plugin("test","",NavBar),
   ];
   let show = $state(true);
   const mouseOffset = {
