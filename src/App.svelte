@@ -21,7 +21,7 @@
 <main
   style:left="{offset.x}px"
   style:top="{offset.y}px"
-  style:height={show ? '200px' : 'fit-content'}
+  style:height={show ? '200px' : '1.4em'}
   style:width={show ? '400px' : '100px'}
 >
   <header
@@ -51,8 +51,7 @@
   </header>
   <div 
     id="body"
-    style:display={show ? "inline" : "none"}
-    style:opacity={show ? 0 : 1}
+    style:opacity={show ? 1 : 0}
   >
     <NavBar {plugins}/>
   </div>
@@ -76,7 +75,8 @@
     overflow: hidden;
     z-index: 99999;
     
-    transition: width 0.5s, height 0.5s;
+    transition: width 0.5s;
+    transition: height 0.5s;
   }
   #body {
     width: 100%;
