@@ -17,15 +17,11 @@
     y: 0,
   };
   
-  function validatePos(){
-    if(offset.x < 0) offset.x = 0;
-    if(pffset.y < 0) offset.y = 0;
-  }
 </script>
 
 <main
-  style:left="{offset.x}px"
-  style:top="{offset.y}px"
+  style:left="max({offset.x}px, 0px)"
+  style:top="max({offset.y}px, 0px)"
   style:height={show ? '200px' : '1.4em'}
   style:width={show ? '400px' : '100px'}
 >
