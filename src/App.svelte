@@ -26,14 +26,12 @@
 >
   <header
     onpointermove={function (this: HTMLElement, e) {
-      console.log(e);
       if (e.buttons !== 1 || e.target !== this) {
         return;
       }
       e.preventDefault();
-      offset.x = e.pageX - mouseOffset.x;
-      offset.y = e.pageY - mouseOffset.y;
-      console.log(`${e.pageY - offset.y}px`);
+      offset.x = e.clientX - mouseOffset.x;
+      offset.y = e.clientY - mouseOffset.y;
     }}
     onpointerdown={(e) => {
       mouseOffset.x = e.offsetX;
