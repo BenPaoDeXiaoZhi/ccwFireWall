@@ -52,7 +52,7 @@
   <div 
     id="body"
     style:display={show ? "inline" : "none"}
-    style:opacity={show ? 1 : 0}
+    style:opacity={show ? 0 : 1}
   >
     <NavBar {plugins}/>
   </div>
