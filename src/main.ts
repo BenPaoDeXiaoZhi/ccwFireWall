@@ -6,8 +6,8 @@ const app = mount(App, {
   target: document.body,
 });
 
-const trapConfig = localStorage.getItem("trapType") == "false" ? false : true;
+const trapConfig = localStorage.getItem("firewall.trapType") == "false" ? false : true;
 startTrap(trapConfig);
-localStorage.setItem("trapType", trapConfig ? "true" : "false");
+localStorage.setItem("firewall.trapType", trapConfig ? "true" : "false");
 
 export default app;
