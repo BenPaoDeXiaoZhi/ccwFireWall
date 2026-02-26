@@ -13,3 +13,17 @@
     </ul>
   {/each}
 </nav>
+
+<style>
+  nav {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px gray solid;
+  }
+
+  ul {
+    color: black;
+    width: 100%;
+  }
+</style>
