@@ -18,9 +18,6 @@ function trapViaBind() {
     }
     return orig.call(this, this2, ...rest);
   };
-  return () => {
-    proto.bind = orig;
-  };
 }
 
 function trapViaDefine() {
