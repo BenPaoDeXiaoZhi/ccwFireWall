@@ -53,7 +53,7 @@
     id="body"
     style:opacity={show ? 1 : 0}
   >
-    <NavBar {plugins}/>
+    <NavBar {plugins} {page}/>
   </div>
 </main>
 
