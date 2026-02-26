@@ -16,6 +16,11 @@
     x: 0,
     y: 0,
   };
+  
+  function validatePos(){
+    if(offset.x < 0) offset.x = 0;
+    if(pffset.y < 0) offset.y = 0;
+  }
 </script>
 
 <main
@@ -32,6 +37,7 @@
       e.preventDefault();
       offset.x = e.clientX - mouseOffset.x;
       offset.y = e.clientY - mouseOffset.y;
+      validatePos();
     }}
     onpointerdown={(e) => {
       mouseOffset.x = e.offsetX;
