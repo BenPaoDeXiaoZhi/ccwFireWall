@@ -1,10 +1,16 @@
 <script lang="ts">
+  import NavBar from "./NavBar.svelte";
   import { vm } from "./store";
+  import { Plugin } from "./plugin";
+  
   let { pages = 1 } = $props();
   const offset = $state({
     x: 20,
     y: 20,
   });
+  const plugins = [
+    new Plugin("test","",NavBar);
+  ];
   let show = $state(true);
   const mouseOffset = {
     x: 0,
@@ -47,7 +53,7 @@
   </header>
   {#if show}
     <div id="body">
-
+      <NavBar {plugins}/>
     </div>
   {/if}
 </main>
