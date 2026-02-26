@@ -45,7 +45,7 @@
     }}
     role="button"
     tabindex="0"
-    style="background-color: {$vm ? 'lightgreen' : 'pink'}"
+    style:background-color={$vm ? 'lightgreen' : 'pink'}
   >
     CCW Check
   </header>
@@ -64,7 +64,7 @@
     text-align: center;
     cursor: move;
     user-select: none;
-    transition: 0.5s;
+    transition: background-color 0.5s;
     touch-action: none;
   }
   main {
@@ -73,7 +73,7 @@
     position: fixed;
     overflow: hidden;
     z-index: 99999;
-    transition: 0.2s;
+    transition: width height 0.2s;
   }
   #body {
     width: 100%;
