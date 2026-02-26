@@ -18,8 +18,8 @@ export default defineConfig(({mode})=>{return {
         version: `${VERSION}-${new Date().toGMTString()}`,
         author: "Meng Fuzi",
         match: [
-          "https://*.ccw.site/gandi/*",
-          "https://*.ccw.site/project/*",
+          "https://*.ccw.site/gandi*",
+          "https://*.ccw.site/detail/*",
           "https://*.ccw.site/player/*"
         ],
         grant: [
