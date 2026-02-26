@@ -1,16 +1,17 @@
 <script lang="ts">
   import NavBar from "./NavBar.svelte";
   import { vm } from "./store";
-  import { Plugin } from "./plugin";
+  import type { Plugin } from "./plugin";
   
-  let { pages = 1 } = $props();
+  type Props = {
+    page: number,
+    plugins: Plugin[],
+  };
+  let { page = 0, plugins }: Props = $props();
   const offset = $state({
     x: 20,
     y: 20,
   });
-  const plugins = [
-    new Plugin("test","",NavBar),
-  ];
   let show = $state(true);
   const mouseOffset = {
     x: 0,
