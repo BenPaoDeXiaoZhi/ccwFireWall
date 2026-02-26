@@ -3,12 +3,14 @@
   type Props = {
     plugins: Plugin[]
   }
-  const { plugins=[] } = $props();
+  const { plugins=[], page=$bindable(0) } = $props();
 </script>
 
 <nav>
-  {#each plugins as plugin}
-    <ul>
+  {#each plugins as plugin, id}
+    <ul onclick={(e) => {
+      page = id;
+    }>
       <span>{plugin.name}</span>
     </ul>
   {/each}
@@ -20,6 +22,7 @@
     height: 100%;
     overflow: hidden;
     border-right: 1px gray solid;
+    display: block;
   }
 
   ul {
