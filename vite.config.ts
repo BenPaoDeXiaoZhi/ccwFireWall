@@ -16,10 +16,4 @@ export default defineConfig({
       },
     }),
   ],
-  build: {
-    lib: {
-      formats: ["iife"],
-      entry: "./src/main.ts",
-    },
-  },
 });
