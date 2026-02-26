@@ -24,7 +24,8 @@
     }}>=</button
   >
   <header
-    onmousemove={function (this: HTMLElement, e) {
+    onpointermove={function (this: HTMLElement, e) {
+      console.log(e);
       if (e.buttons !== 1 || e.target !== this) {
         return;
       }
@@ -33,7 +34,7 @@
       offset.y = e.pageY - mouseOffset.y;
       console.log(`${e.pageY - offset.y}px`);
     }}
-    onmousedown={(e) => {
+    onpointerdown={(e) => {
       mouseOffset.x = e.offsetX;
       mouseOffset.y = e.offsetY;
       e.stopPropagation();
