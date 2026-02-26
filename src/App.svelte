@@ -73,7 +73,9 @@
     position: fixed;
     overflow: hidden;
     z-index: 99999;
-    transition: width height 0.2s;
+    
+    transition: width 0.5s;
+    transition: height 0.5s;
   }
   #body {
     width: 100%;
