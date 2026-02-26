@@ -35,7 +35,6 @@ function trapViaDefine() {
 }
 
 function checkWithRuntime(obj: MaybeWithRuntime) {
-  console.log(obj);
   if (!obj || !obj.runtime) {
     return false;
   }
