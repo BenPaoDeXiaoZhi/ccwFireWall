@@ -2,6 +2,7 @@ import { vm } from "./store";
 
 type MaybeWithRuntime = { runtime: GandiRuntime } | any;
 export function startTrap(useBind: boolean) {
+  console.log(`useBind:${useBind}`);
   if (!useBind) {
     trapViaDefine();
   } else {
