@@ -49,11 +49,13 @@
   >
     CCW Check
   </header>
-  {#if show}
-    <div id="body">
-      <NavBar {plugins}/>
-    </div>
-  {/if}
+  <div 
+    id="body"
+    style:display={show ? "inline" : "none"}
+    style:opacity={show ? 1 : 0}
+  >
+    <NavBar {plugins}/>
+  </div>
 </main>
 
 <style>
@@ -83,5 +85,6 @@
     background-color: aliceblue;
     display: grid;
     grid-template-columns: 0.2fr 0.8fr;
+    transition: 0.5s;
   }
 </style>
