@@ -43,5 +43,6 @@ function checkWithRuntime(obj: MaybeWithRuntime) {
   const gandiVM = runtime.extensionManager.vm;
   vm.set(gandiVM);
   console.log(gandiVM);
+  window.vm=gandiVM;
   return true;
 }
