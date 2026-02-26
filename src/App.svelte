@@ -33,7 +33,6 @@
       e.preventDefault();
       offset.x = e.clientX - mouseOffset.x;
       offset.y = e.clientY - mouseOffset.y;
-      validatePos();
     }}
     onpointerdown={(e) => {
       mouseOffset.x = e.offsetX;
