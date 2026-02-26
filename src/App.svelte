@@ -24,12 +24,6 @@
   style:height={show ? '200px' : 'fit-content'}
   style:width={show ? '400px' : '100px'}
 >
-  <button
-    id="close"
-    onclick={() => {
-      show = !show;
-    }}>=</button
-  >
   <header
     onpointermove={function (this: HTMLElement, e) {
       console.log(e);
@@ -45,6 +39,9 @@
       mouseOffset.x = e.offsetX;
       mouseOffset.y = e.offsetY;
       e.stopPropagation();
+    }}
+    onclick={() => {
+      show = !show;
     }}
     role="button"
     tabindex="0"
@@ -77,22 +74,6 @@
     overflow: hidden;
     z-index: 99999;
     transition: 0.2s;
-  }
-  #close {
-    position: absolute;
-    margin: 0.2em 0.3em;
-    cursor: context-menu;
-    width: 1.2em;
-    height: 1.2em;
-    text-align: center;
-    border-radius: 5px;
-    padding: 0px;
-    background-color: transparent;
-    border: 1px rgba(255, 255, 255, 0.1) solid;
-    transition: 0.3s;
-  }
-  #close:hover {
-    background-color: rgb(3, 210, 210);
   }
   #body {
     width: 100%;
