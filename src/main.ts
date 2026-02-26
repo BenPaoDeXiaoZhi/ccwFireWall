@@ -6,8 +6,8 @@ const app = mount(App, {
   target: document.body,
 });
 
-const trapConfig = localStorage.getItem("firewall.trapType") == "false" ? false : true;
-startTrap(trapConfig);
-localStorage.setItem("firewall.trapType", trapConfig ? "true" : "false");
+const useBind = localStorage.getItem("firewall.useBind") == "true" ? true : false;
+startTrap(useBind);
+localStorage.setItem("firewall.useBind", useBind ? "true" : "false");
 
 export default app;
