@@ -4,6 +4,7 @@ import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 
 const document = unsafeWindow.document;
+const localStorage = unsafeWindow.localStorage;
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
