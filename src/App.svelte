@@ -48,7 +48,7 @@
     style:background-color={$vm ? "lightgreen" : "pink"}
     style:height="{headerHeight}px"
   >
-    CCW Check
+    CCW Firewall
   </button>
   <div id="body" style:opacity={show ? 1 : 0}>
     <NavBar {plugins} bind:page />
