@@ -3,7 +3,7 @@
   type Props = {
     plugins: Plugin[]
   }
-  const { plugins=[], page=$bindable(0) } = $props();
+  let { plugins=[], page=$bindable(0) } = $props();
 </script>
 
 <nav>
