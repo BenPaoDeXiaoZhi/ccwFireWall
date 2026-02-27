@@ -3,6 +3,8 @@ import { startTrap } from "./trapVM";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 
+const document = unsafeWindow.document;
+
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
 let target: HTMLElement;
