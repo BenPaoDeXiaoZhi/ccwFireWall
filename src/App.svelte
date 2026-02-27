@@ -64,6 +64,7 @@
     >
       page:{page}
       {#if current.main}
+        {@debug $vm}
         <current.main
           { $vm }
           { container }
