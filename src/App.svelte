@@ -60,8 +60,8 @@
     />
     <div bind:this={container}>
       {page}
-      {#if current.Main}
-        <current.Main
+      {#if current.main}
+        <current.main
           { vm }
           { container }
         />
