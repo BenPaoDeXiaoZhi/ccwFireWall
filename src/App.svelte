@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Component } from "svelte";
   import NavBar from "./NavBar.svelte";
   import { vm } from "./store";
   import type { Plugin } from "./plugin";
@@ -55,7 +56,9 @@
     bind:this={container}
   >
     <NavBar { plugins } { page }/>
-    <current.Main { vm } { container }>
+    {#if current.Main instaceof Component}
+      <current.Main { vm } { container }/>
+    {/if}
   </div>
 </main>
 
