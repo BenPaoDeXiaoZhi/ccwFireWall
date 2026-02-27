@@ -1,9 +1,8 @@
 import type { Component } from 'svelte';
 
-export type FunctionalComponent = ({
-  vm: GandiVM,
-  root: HTMLElement,
-}) => Function;
+export type FunctionalComponent = (
+  ctx: PluginContext
+) => Function;
 
 export class Plugin {
   name: string;
@@ -18,4 +17,10 @@ export class Plugin {
     this.icon = icon;
     this.main = main;
   }
+}
+
+export type PluginContext = {
+  vm: GandiVM,
+  container: HTMLElement,
+  root: HTMLElement,
 }
