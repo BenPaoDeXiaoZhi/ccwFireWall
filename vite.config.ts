@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
         entry: "./src/main.ts",
         userscript: {
           name: "CCW Firewall",
-          version: `${VERSION}-${new Date().toDateString()}`,
+          version: `${VERSION}-${new Date().toISOString()}`,
           author: "Meng Fuzi",
           match: [
             "https://*.ccw.site/gandi*",
