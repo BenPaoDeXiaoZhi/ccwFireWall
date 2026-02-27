@@ -1,18 +1,20 @@
 <script lang="ts">
   import type { Plugin } from "./plugin";
   type Props = {
-    plugins: Plugin[]
-  }
-  let { plugins=[], page=$bindable(0) } = $props();
+    plugins: Plugin[];
+  };
+  let { plugins = [], page = $bindable(0) } = $props();
 </script>
 
 <nav>
   {#each plugins as plugin, id}
-    <ul onclick={(e) => {
-      page = id;
-    }}>
+    <button
+      onclick={() => {
+        page = id;
+      }}
+    >
       <span>{plugin.name}</span>
-    </ul>
+    </button>
   {/each}
 </nav>
 
@@ -25,8 +27,9 @@
     display: block;
   }
 
-  ul {
+  button {
     color: black;
     width: 100%;
+    border: none;
   }
 </style>
