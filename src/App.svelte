@@ -17,7 +17,8 @@
     x: 0,
     y: 0,
   };
-  
+  const current = $derived(plugins[page]);
+  let container;
 </script>
 
 <main
@@ -51,8 +52,10 @@
   <div 
     id="body"
     style:opacity={show ? 1 : 0}
+    bind:this={container}
   >
-    <NavBar {plugins} {page}/>
+    <NavBar { plugins } { page }/>
+    <current.Main { vm } { container }>
   </div>
 </main>
 
