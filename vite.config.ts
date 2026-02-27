@@ -25,7 +25,7 @@ export default defineConfig(({ mode }) => {
             "https://*.ccw.site/detail/*",
             "https://*.ccw.site/player/*",
           ],
-          grant: [],
+          grant: ["unsafeWindow"],
         },
       }),
     ],
