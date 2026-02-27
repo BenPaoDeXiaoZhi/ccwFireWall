@@ -43,7 +43,6 @@
     onclick={() => {
       show = !show;
     }}
-    role="button"
     tabindex="0"
     style:background-color={$vm ? 'lightgreen' : 'pink'}
   >
