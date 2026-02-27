@@ -53,12 +53,20 @@
   <div 
     id="body"
     style:opacity={show ? 1 : 0}
-    bind:this={container}
   >
-    <NavBar { plugins } { page }/>
-    {#if current.Main}
-      <current.Main { vm } { container }/>
-    {/if}
+    <NavBar 
+      { plugins }
+      bind:page={ page }
+    />
+    <div bind:this={container}>
+      {page}
+      {#if current.Main}
+        <current.Main
+          { vm }
+          { container }
+        />
+      {/if}
+    </div>
   </div>
 </main>
 
