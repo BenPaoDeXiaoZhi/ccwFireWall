@@ -56,7 +56,7 @@
     bind:this={container}
   >
     <NavBar { plugins } { page }/>
-    {#if current.Main instaceof Component}
+    {#if current.Main}
       <current.Main { vm } { container }/>
     {/if}
   </div>
