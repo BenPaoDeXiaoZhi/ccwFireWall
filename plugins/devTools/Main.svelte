@@ -2,6 +2,13 @@
   import type { PluginContext } from "../../src/plugin";
   let { vm }: PluginContext = $props();
   let vmKey = $state("vm");
+
+  let enableFreeze = $state(
+    localStorage.getItem("devtools.freeze") == "false" ? false : true,
+  );
+  $effect(() => {
+    localStorage.setItem("devtools.freeze", String(enableFreeze));
+  });
 </script>
 
 <li id="vm">
@@ -18,6 +25,12 @@
   >
     保存vm(vm{!$vm ? "未" : "已"}获取到)
   </button>
+</li>
+<li id="freeze">
+  <label>
+    暂停自动执行
+    <input type="checkbox" bind:checked={enableFreeze} />
+  </label>
 </li>
 
 <style>
