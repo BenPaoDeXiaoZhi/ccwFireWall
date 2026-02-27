@@ -20,14 +20,6 @@
   };
   const current = $derived(plugins[page]);
   let container;
-
-  let clear;
-  $effect(()=>{
-    if(clear) clear();
-    if(!current.main instanceof Component){
-      clear = current.main({ vm, container });
-    }
-  })
 </script>
 
 <main
