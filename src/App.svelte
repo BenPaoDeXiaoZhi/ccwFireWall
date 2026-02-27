@@ -58,8 +58,11 @@
       { plugins }
       bind:page={ page }
     />
-    <div bind:this={container}>
-      {page}
+    <div
+      bind:this={container}
+      style:display="block"
+    >
+      page:{page}
       {#if current.main}
         <current.main
           { vm }
