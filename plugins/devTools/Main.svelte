@@ -10,10 +10,10 @@
   const emptyFunc = () => null;
   $effect(() => {
     localStorage.setItem("devtools.freeze", String(enableFreeze));
-    if (!vm) {
+    if (!$vm) {
       return;
     }
-    if (enableFreeze && $vm.runtime._step !== emptyFunc) {
+    if (enableFreeze && $vm.runtime._step != emptyFunc) {
       origStep_ = $vm.runtime._step;
       $vm.runtime._step = emptyFunc;
     } else if (origStep_) {
