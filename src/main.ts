@@ -3,8 +3,9 @@ import { startTrap } from "./trapVM";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 
-const document = unsafeWindow.document;
-const localStorage = unsafeWindow.localStorage;
+const { document, localStorage } = unsafeWindow;
+
+alert(document);
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
