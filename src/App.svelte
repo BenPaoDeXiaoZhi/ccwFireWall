@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { Component } from "svelte";
   import NavBar from "./NavBar.svelte";
   import { vm } from "./store";
   import type { Plugin } from "./plugin";
