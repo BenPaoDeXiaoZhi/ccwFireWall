@@ -6,7 +6,7 @@ import plugins from "../plugins/plugin-manifest";
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
 alert(rootContainer)
-const shadowRoot = rootContainer.attachShadow({ mode: "closed" });
+const shadowRoot = rootContainer.attachShadow({ mode: "open" });
 
 const app = mount(App, {
   target: shadowRoot,
