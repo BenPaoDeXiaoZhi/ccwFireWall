@@ -83,6 +83,10 @@
     user-select: none;
     transition: background-color 0.5s;
     touch-action: none;
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    color: black;
   }
   main {
     border-radius: 10px;
