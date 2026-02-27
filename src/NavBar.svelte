@@ -10,7 +10,7 @@
   {#each plugins as plugin, id}
     <ul onclick={(e) => {
       page = id;
-    }>
+    }}>
       <span>{plugin.name}</span>
     </ul>
   {/each}
