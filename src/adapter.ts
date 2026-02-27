@@ -1,3 +1,3 @@
 if (!("unsafeWindow" in window)) {
-  unsafeWindow = window;
+  window.unsafeWindow = window;
 }
