@@ -6,8 +6,19 @@
   let enableFreeze = $state(
     localStorage.getItem("devtools.freeze") == "false" ? false : true,
   );
+  let origStep_ = $state();
+  const emptyFunc = ()=>null;
   $effect(() => {
     localStorage.setItem("devtools.freeze", String(enableFreeze));
+    if(!vm){
+      return
+    }
+    if(enableFreeze){
+      origStep_ = $vm.runtime.step_;
+      $vm.runtime.step_ = emptyFunc;
+    }else if(origStep_){
+      $vm.runtime.step_ = origStep_;
+    }
   });
 </script>
 
@@ -28,7 +39,9 @@
 </li>
 <li id="freeze">
   <label>
-    暂停自动执行
+    暂停自动执行({
+      $vm.runtime.step_ == emptyFunc ? "已暂停" : "未暂停"
+    })
     <input type="checkbox" bind:checked={enableFreeze} />
   </label>
 </li>
