@@ -9,11 +9,12 @@ let { document, localStorage } = unsafeWindow;
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
 let target: HTMLElement;
-if (localStorage.getItem("firewall.shadow") == "true") {
+if (localStorage.getItem("firewall.noShadow") != "true") {
   const shadowRoot = rootContainer.attachShadow({ mode: "open" });
   target = document.createElement("div");
   shadowRoot.appendChild(target);
 } else {
+  console.warn("未使用shadow dom，可能暴露");
   target = rootContainer;
 }
 
