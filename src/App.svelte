@@ -60,6 +60,7 @@
     <div
       bind:this={container}
     >
+      <header>{current.name}</header>
       {#if current.main}
         <current.main
           { vm }
@@ -101,5 +102,11 @@
     display: grid;
     grid-template-columns: 0.2fr 0.8fr;
     transition: 0.5s;
+  }
+  header {
+    width: 100%;
+    height: 1.2em;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
   }
 </style>
