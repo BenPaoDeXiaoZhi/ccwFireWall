@@ -5,11 +5,11 @@ import plugins from "../plugins/plugin-manifest";
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
-alert(rootContainer)
 const shadowRoot = rootContainer.attachShadow({ mode: "open" });
+const target = shadowRoot.createElement("div");
 
 const app = mount(App, {
-  target: shadowRoot,
+  target,
   props: {
     plugins,
     page: 0,
