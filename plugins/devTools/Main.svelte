@@ -1,6 +1,7 @@
 <script lang="ts">
-  const { vm } = $props();
-  let vmKey=$state("vm");
+  import type { PluginContext } from "../../src/plugin"
+  const { vm }: PluginContext = $props();
+  let vmKey = $state("vm");
 </script>
 
 <label>
