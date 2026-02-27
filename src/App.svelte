@@ -65,7 +65,7 @@
       page:{page}
       {#if current.main}
         <current.main
-          { vm }
+          { $vm }
           { container }
         />
       {/if}
