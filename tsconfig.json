@@ -16,9 +16,10 @@
     "allowJs": true,
     "checkJs": true,
     "moduleDetection": "force",
-    "typeRoot": [
+    "typeRoots": [
       "types",
-      "@turbowarp/types"
+      "node_modules/@turbowarp/types",
+      "node_modules/@types"
     ]
   },
   "include": [
