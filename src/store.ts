@@ -1,2 +1,2 @@
 import { writable } from "svelte/store";
-export const vm:GandiVM|null = $state.raw();
+export const vm = writable<GandiVM>();
