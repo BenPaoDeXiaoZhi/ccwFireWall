@@ -5,8 +5,15 @@ import plugins from "../plugins/plugin-manifest";
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
-const shadowRoot = rootContainer.attachShadow({ mode: "open" });
-const target = shadowRoot.createElement("div");
+let target: HTMLElement;
+if(localStorage.getItem("firewall.shadow")=="true"){
+  const shadowRoot = rootContainer.attachShadow({ mode: "open" });
+  target = shadowRoot.createElement("div");
+  shadowRoot.appendChild(target);
+}
+else{
+  target=rootContainer;
+}
 
 const app = mount(App, {
   target,
