@@ -16,12 +16,14 @@
     "allowJs": true,
     "checkJs": true,
     "moduleDetection": "force"
+    "typeRoot": [
+      "types",
+      "@turbowarp/types"
+    ]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.js",
-    "src/**/*.svelte",
-    "types/**/*.d.ts",
-    "node_modules/@turbowarp/types"
+    "src/**/*.svelte"
   ]
 }
