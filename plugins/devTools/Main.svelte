@@ -11,9 +11,9 @@
 
 <button
   onclick={()=>{
-    window[vmKey]=vm;
+    window[vmKey]=$vm;
   }}
-  disabled={!vm}
+  disabled={!$vm}
 >
-  保存vm(vm{!vm ? "未" : "已"}获取到)
+  保存vm(vm{!$vm ? "未" : "已"}获取到)
 </button>
