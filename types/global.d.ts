@@ -10,4 +10,4 @@ declare interface GandiExtMgr extends VM.ExtensionManager {
   vm: GandiVM;
 }
 
-declare const unsafeWindow:Window;
+declare var unsafeWindow: Window;

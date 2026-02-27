@@ -2,9 +2,9 @@ import { mount } from "svelte";
 import { startTrap } from "./trapVM";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
+import "./adapter";
 
-let { document, localStorage } =
-  "unsafeWindow" in window ? unsafeWindow : window;
+let { document, localStorage } = unsafeWindow;
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
