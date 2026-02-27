@@ -26,7 +26,7 @@
   style:height={show ? '200px' : '1.4em'}
   style:width={show ? '400px' : '100px'}
 >
-  <header
+  <button
     onpointermove={function (this: HTMLElement, e) {
       if (e.buttons !== 1 || e.target !== this) {
         return;
@@ -48,7 +48,7 @@
     style:background-color={$vm ? 'lightgreen' : 'pink'}
   >
     CCW Check
-  </header>
+  </button>
   <div 
     id="body"
     style:opacity={show ? 1 : 0}
@@ -58,7 +58,7 @@
 </main>
 
 <style>
-  header {
+  button {
     width: 100%;
     height: 1.4em;
     font-weight: bold;
