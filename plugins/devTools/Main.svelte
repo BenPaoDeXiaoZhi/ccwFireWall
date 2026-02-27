@@ -6,8 +6,8 @@
   let enableFreeze = $state(
     localStorage.getItem("devtools.freeze") == "false" ? false : true,
   );
-  let origStep_: () => void = $state();
   const emptyFunc = () => null;
+  let origStep_: () => void = $state(emptyFunc);
   $effect(() => {
     localStorage.setItem("devtools.freeze", String(enableFreeze));
     if (!$vm) {
