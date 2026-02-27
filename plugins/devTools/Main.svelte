@@ -13,11 +13,15 @@
     if (!$vm) {
       return;
     }
-    if (enableFreeze && $vm.runtime._step != emptyFunc) {
+    if (enableFreeze) {
+      if($vm.runtime._step == emptyFunc){
+        return;
+      }
       origStep_ = $vm.runtime._step;
       $vm.runtime._step = emptyFunc;
-    } else if (origStep_) {
+    } else if (origStep_ != emptyFunc) {
       $vm.runtime._step = origStep_;
+      origStep_ = emptyFunc;
     }
   });
 </script>
