@@ -4,16 +4,24 @@
   let vmKey = $state("vm");
 </script>
 
-<label>
-  vm保存位置:
-  <input type="text" bind:value={vmKey}>
-</label>
+<li id="vm">
+  <label>
+    vm保存位置:
+    <input type="text" bind:value={vmKey}>
+  </label>
 
-<button
-  onclick={()=>{
-    window[vmKey]=$vm;
-  }}
-  disabled={!$vm}
->
-  保存vm(vm{!$vm ? "未" : "已"}获取到)
-</button>
+  <button
+    onclick={()=>{
+      window[vmKey]=$vm;
+    }}
+    disabled={!$vm}
+  >
+    保存vm(vm{!$vm ? "未" : "已"}获取到)
+  </button>
+<li>
+
+<style>
+  li {
+    list-style: none;
+  }
+</style>
