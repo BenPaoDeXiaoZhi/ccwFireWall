@@ -30,7 +30,7 @@
 
   <button
     onclick={() => {
-      window[vmKey] = $vm;
+      unsafeWindow[vmKey] = $vm;
     }}
     disabled={!$vm}
   >
