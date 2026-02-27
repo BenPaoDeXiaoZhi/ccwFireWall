@@ -18,7 +18,7 @@
     y: 0,
   };
   const current = $derived(plugins[page]);
-  let container;
+  let container = $state();
 </script>
 
 <main
