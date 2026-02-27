@@ -4,8 +4,9 @@ import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 
 const rootContainer = document.createElement("div");
-const shadowRoot = rootContainer.attachShadow({ mode: "closed" });
 document.body.appendChild(rootContainer);
+alert(rootContainer)
+const shadowRoot = rootContainer.attachShadow({ mode: "closed" });
 
 const app = mount(App, {
   target: shadowRoot,
