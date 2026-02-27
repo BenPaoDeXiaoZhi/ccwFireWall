@@ -35,7 +35,7 @@ function trapViaDefine() {
 }
 
 function checkWithRuntime(obj: MaybeWithRuntime) {
-  if (!obj || !obj.runtime) {
+  if (!obj?.runtime?.extensionManager?.vm) {
     return false;
   }
   const runtime = obj.runtime as GandiRuntime;

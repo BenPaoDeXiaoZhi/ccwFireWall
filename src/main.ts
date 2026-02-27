@@ -3,20 +3,18 @@ import { startTrap } from "./trapVM";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 
-const { document, localStorage } = unsafeWindow;
-
-alert(document);
+let { document, localStorage } =
+  "unsafeWindow" in window ? unsafeWindow : window;
 
 const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
 let target: HTMLElement;
-if(localStorage.getItem("firewall.shadow")=="true"){
+if (localStorage.getItem("firewall.shadow") == "true") {
   const shadowRoot = rootContainer.attachShadow({ mode: "open" });
-  target = shadowRoot.createElement("div");
+  target = document.createElement("div");
   shadowRoot.appendChild(target);
-}
-else{
-  target=rootContainer;
+} else {
+  target = rootContainer;
 }
 
 const app = mount(App, {
