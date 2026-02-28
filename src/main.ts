@@ -26,9 +26,4 @@ const app = mount(App, {
   },
 });
 
-const useBind =
-  localStorage.getItem("firewall.useBind") == "true" ? true : false;
-startTrap(useBind);
-localStorage.setItem("firewall.useBind", useBind ? "true" : "false");
-
 export default app;
