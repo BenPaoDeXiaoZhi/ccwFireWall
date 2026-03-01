@@ -1,5 +1,4 @@
 import type { Component } from "svelte";
-import type { Writable } from "svelte/store";
 
 export class Plugin {
   name: string;
@@ -13,7 +12,7 @@ export class Plugin {
 }
 
 export type PluginContext = {
-  vm: Writable<GandiVM>;
+  vm: GandiVM | null;
   container: HTMLElement;
   root: HTMLElement;
 };
