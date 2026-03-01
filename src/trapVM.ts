@@ -1,46 +1,51 @@
-import { vm } from "./store";
-
 type MaybeWithRuntime = { runtime: GandiRuntime } | any;
-export function startTrap(useBind: boolean) {
+
+const useBind =
+  localStorage.getItem("firewall.useBind") == "true" ? true : false;
+localStorage.setItem("firewall.useBind", useBind ? "true" : "false");
+
+export function startTrap() {
   console.log(`useBind:${useBind}`);
-  if (!useBind) {
-    trapViaDefine();
-  } else {
-    trapViaBind();
-  }
+  return new Promise((resolve)=>{
+    if (!useBind) {
+      trapViaDefine(resolve);
+    } else {
+      trapViaBind(resolve);
+    }
+  })
 }
 
-function trapViaBind() {
+function trapViaBind(resolve: Function) {
   const proto = Function.prototype;
   const orig = proto.bind;
   proto.bind = function (this2: MaybeWithRuntime, ...rest) {
-    if (checkWithRuntime(this2)) {
+    if (checkWithRuntime(this2, resolve)) {
       proto.bind = orig;
     }
     return orig.call(this, this2, ...rest);
   };
 }
 
-function trapViaDefine() {
+function trapViaDefine(resolve: Function) {
   const orig = Object.defineProperty;
   Object.defineProperty = function (
     obj: MaybeWithRuntime,
     ...rest
   ): MaybeWithRuntime {
-    if (checkWithRuntime(obj)) {
+    if (checkWithRuntime(obj, resolve)) {
       Object.defineProperty = orig;
     }
     return orig.call(this, obj, ...rest);
   };
 }
 
-function checkWithRuntime(obj: MaybeWithRuntime) {
+function checkWithRuntime(obj: MaybeWithRuntime, resolve: Function) {
   if (!obj?.runtime?.extensionManager?.vm) {
     return false;
   }
   const runtime = obj.runtime as GandiRuntime;
   const gandiVM = runtime.extensionManager.vm;
-  vm.set(gandiVM);
+  resolve(gandiVM);
   console.log(gandiVM);
   return true;
 }
