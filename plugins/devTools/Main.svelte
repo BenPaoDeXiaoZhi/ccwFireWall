@@ -10,17 +10,17 @@
   let origStep_: () => void = $state(emptyFunc);
   $effect(() => {
     localStorage.setItem("devtools.freeze", String(enableFreeze));
-    if (!$vm) {
+    if (!vm) {
       return;
     }
     if (enableFreeze) {
-      if($vm.runtime._step == emptyFunc){
+      if(vm.runtime._step == emptyFunc){
         return;
       }
-      origStep_ = $vm.runtime._step;
-      $vm.runtime._step = emptyFunc;
+      origStep_ = vm.runtime._step;
+      vm.runtime._step = emptyFunc;
     } else if (origStep_ != emptyFunc) {
-      $vm.runtime._step = origStep_;
+      vm.runtime._step = origStep_;
       origStep_ = emptyFunc;
     }
   });
@@ -34,16 +34,16 @@
 
   <button
     onclick={() => {
-      unsafeWindow[vmKey] = $vm;
+      unsafeWindow[vmKey] = vm;
     }}
-    disabled={!$vm}
+    disabled={!vm}
   >
-    保存vm(vm{!$vm ? "未" : "已"}获取到)
+    保存vm(vm{!vm ? "未" : "已"}获取到)
   </button>
 </li>
 <li id="freeze">
   <label>
-    暂停自动执行({$vm?.runtime?._step == emptyFunc ? "已暂停" : "未暂停"})
+    暂停自动执行({vm?.runtime?._step == emptyFunc ? "已暂停" : "未暂停"})
     <input type="checkbox" bind:checked={enableFreeze} />
   </label>
 </li>
