@@ -1,6 +1,6 @@
 <script lang="ts">
   import NavBar from "./NavBar.svelte";
-  import { vm } from "./store";
+  import { startTrap } from "./trapVM";
   import type { Plugin } from "./plugin";
 
   type Props = {
@@ -8,6 +8,7 @@
     plugins: Plugin[];
   };
   let { page = 0, plugins }: Props = $props();
+  let vm = $state.raw();
   const current = $derived(plugins[page]);
   const offset = $state({
     x: 20,
@@ -20,6 +21,7 @@
   });
   let container = $state();
   let headerHeight = $state(20);
+  startTrap().then((gandiVM) => vm = gandiVM);
 </script>
 
 <main
