@@ -47,7 +47,7 @@
       show = !show;
     }}
     tabindex="0"
-    style:background-color={$vm ? "lightgreen" : "pink"}
+    style:background-color={vm ? "lightgreen" : "pink"}
     style:height="{headerHeight}px"
   >
     CCW Firewall
