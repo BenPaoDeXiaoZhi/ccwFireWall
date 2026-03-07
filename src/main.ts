@@ -1,5 +1,4 @@
 import { mount } from "svelte";
-import { startTrap } from "./trapVM";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
 import "./adapter";
@@ -10,7 +9,7 @@ const rootContainer = document.createElement("div");
 document.body.appendChild(rootContainer);
 let target: HTMLElement;
 if (localStorage.getItem("firewall.noShadow") != "true") {
-  const shadowRoot = rootContainer.attachShadow({ mode: "open" });
+  var shadowRoot = rootContainer.attachShadow({ mode: "closed" });
   target = document.createElement("div");
   shadowRoot.appendChild(target);
 } else {
@@ -23,6 +22,7 @@ const app = mount(App, {
   props: {
     plugins,
     page: 0,
+    root: target,
   },
 });
 

@@ -4,15 +4,15 @@ const useBind =
   localStorage.getItem("firewall.useBind") == "true" ? true : false;
 localStorage.setItem("firewall.useBind", useBind ? "true" : "false");
 
-export function startTrap() {
+export function startTrap(): Promise<GandiVM> {
   console.log(`useBind:${useBind}`);
-  return new Promise((resolve)=>{
+  return new Promise((resolve) => {
     if (!useBind) {
       trapViaDefine(resolve);
     } else {
       trapViaBind(resolve);
     }
-  })
+  });
 }
 
 function trapViaBind(resolve: Function) {

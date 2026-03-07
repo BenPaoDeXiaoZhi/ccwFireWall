@@ -6,9 +6,10 @@
   type Props = {
     page: number;
     plugins: Plugin[];
+    root: HTMLElement;
   };
-  let { page = 0, plugins }: Props = $props();
-  let vm = $state.raw();
+  let { page = 0, plugins, root }: Props = $props();
+  let vm: GandiVM = $state.raw();
   const current = $derived(plugins[page]);
   const offset = $state({
     x: 20,
@@ -19,9 +20,18 @@
     x: 0,
     y: 0,
   });
-  let container = $state();
+  let container: HTMLElement = $state();
   let headerHeight = $state(20);
-  startTrap().then((gandiVM) => vm = gandiVM);
+  startTrap().then((gandiVM) => (vm = gandiVM));
+  $effect(() => {
+    if ("init" in current.main) {
+      current.main.init({
+        vm,
+        container,
+        root,
+      });
+    }
+  });
 </script>
 
 <main
@@ -56,8 +66,8 @@
     <NavBar {plugins} bind:page />
     <div bind:this={container}>
       <header style:height={headerHeight}>{current.name}</header>
-      {#if current.main}
-        <current.main {vm} {container} />
+      {#if !("init" in current.main)}
+        <current.main {vm} {container} {root} />
       {/if}
     </div>
   </div>
