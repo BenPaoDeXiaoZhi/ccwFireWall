@@ -7,30 +7,31 @@
   let enableFreeze = $state(
       !!$config["devtools.freeze"]
   );
+  let runtime = $derived(vm?.runtime);
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $derived.by(()=>{
-    if(!vm){
+    if(!runtime){
       return emptyFunc;
     }
-    if(runtimeStep == emptyFunc && vm){
-      return vm.runtime._step;
+    if(runtimeStep == emptyFunc && runtime){
+      return runtime._step;
     }
   });
 
 
   $effect(() => {
     $config["devtools.freeze"] = enableFreeze;
-    if (!vm) {
+    if (!runtime) {
       return;
     }
     if (enableFreeze) {
-      vm.runtime._step = emptyFunc;
+      runtime._step = emptyFunc;
     } else {
       if(runtimeStep == emptyFunc) {
         return; //等待origin正确
       }
-      vm.runtime._step = runtimeStep;
+      runtime._step = runtimeStep;
     }
   });
 </script>
@@ -52,7 +53,7 @@
 </li>
 <li id="freeze">
   <label>
-    暂停自动执行({vm?.runtime?._step == emptyFunc ? "已暂停" : "未暂停"})
+    暂停自动执行({runtime?._step == emptyFunc ? "已暂停" : "未暂停"})
     <input type="checkbox" bind:checked={enableFreeze} />
   </label>
 </li>
