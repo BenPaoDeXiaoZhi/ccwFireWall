@@ -4,7 +4,9 @@
   let { vm }: PluginContext = $props();
   let vmKey = $state("vm");
 
-  let enableFreeze = !!$config["devtools.freeze"];
+  let enableFreeze = $state(
+      !!$config["devtools.freeze"]
+  );
   const emptyFunc = () => null;
   let origStep_: () => void = $state(emptyFunc);
   $effect(() => {
