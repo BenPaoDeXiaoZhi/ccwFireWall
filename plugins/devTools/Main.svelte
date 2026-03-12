@@ -7,7 +7,7 @@
   let enableFreeze = $state(
       !!$config["devtools.freeze"]
   );
-  let runtime = $derived(vm?.runtime);
+  let runtime = $state($derived(vm?.runtime));
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
