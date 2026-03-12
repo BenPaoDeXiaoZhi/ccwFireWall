@@ -1,8 +1,10 @@
 {
   "name": "ccw-firewall",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "imports": {
+    "@*": "./*",
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm run check & vite build --mode production",
