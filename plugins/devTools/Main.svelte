@@ -11,7 +11,7 @@
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-  let freezed = $derived(runtime?._step == emptyFunc);
+  let freezed = $state(runtime?._step == emptyFunc);
 
   $effect(() => {
     $config["devtools.freeze"] = enableFreeze;
@@ -26,6 +26,7 @@
     } else {
       runtime._step = runtimeStep;
     }
+    freezed = runtime._step == emptyFunc;
   });
 </script>
 
