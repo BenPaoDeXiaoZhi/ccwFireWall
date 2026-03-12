@@ -7,24 +7,27 @@
   let enableFreeze = $state(
       !!$config["devtools.freeze"]
   );
+
   const emptyFunc = () => null;
-  let origStep_: () => void = $state(emptyFunc);
+  let runtimeStep: () => void = $derived.by(()=>{
+    if(!vm){
+      return emptyFunc;
+    }
+    if(runtimeStep == emptyFunc && vm){
+      return vm.runtime._step;
+    }
+  });
+
+
   $effect(() => {
     $config["devtools.freeze"] = enableFreeze;
     if (!vm) {
       return;
     }
     if (enableFreeze) {
-      if(vm.runtime._step == emptyFunc){
-        return;
-      }
-      origStep_ = vm.runtime._step;
       vm.runtime._step = emptyFunc;
-      vm = vm; // reassign to rerender
-    } else if (origStep_ != emptyFunc) {
-      vm.runtime._step = origStep_;
-      origStep_ = emptyFunc;
-      vm = vm;
+    } else {
+      vm.runtime._step = runtimeStep;
     }
   });
 </script>
