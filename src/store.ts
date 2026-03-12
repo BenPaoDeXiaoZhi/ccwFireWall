@@ -6,9 +6,7 @@ try {
 }catch(e) {
     console.warn("firewall:", e);
 };
-alert(origConfig);
 export const config = writable(origConfig);
 config.subscribe((cfg)=>{
-    console.info("cfg update:", cfg);
     localStorage.setItem(configKey, JSON.stringify(cfg));
 });
