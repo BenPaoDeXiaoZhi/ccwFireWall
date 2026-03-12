@@ -10,14 +10,7 @@
   let runtime = $derived(vm?.runtime);
 
   const emptyFunc = () => null;
-  let runtimeStep: () => void = $derived.by(()=>{
-    if(!runtime){
-      return emptyFunc;
-    }
-    if(runtimeStep == emptyFunc && runtime){
-      return runtime._step;
-    }
-  });
+  let runtimeStep: () => void = $state(emptyFunc);
 
 
   $effect(() => {
@@ -25,12 +18,12 @@
     if (!runtime) {
       return;
     }
+    if(runtimeStep == emptyFunc){
+      runtimeStep = runtime._step;
+    };
     if (enableFreeze) {
       runtime._step = emptyFunc;
     } else {
-      if(runtimeStep == emptyFunc) {
-        return; //等待origin正确
-      }
       runtime._step = runtimeStep;
     }
   });
