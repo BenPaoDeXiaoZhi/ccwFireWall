@@ -7,11 +7,11 @@
   let enableFreeze = $state(
       !!$config["devtools.freeze"]
   );
-  let runtime = $state($derived(vm?.runtime));
+  let runtime = $derived(vm?.runtime);
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-
+  let freezed = $derived(runtime?._step == emptyFunc);
 
   $effect(() => {
     $config["devtools.freeze"] = enableFreeze;
@@ -46,7 +46,7 @@
 </li>
 <li id="freeze">
   <label>
-    暂停自动执行({runtime?._step == emptyFunc ? "已暂停" : "未暂停"})
+    暂停自动执行({freezed ? "已暂停" : "未暂停"})
     <input type="checkbox" bind:checked={enableFreeze} />
   </label>
 </li>
