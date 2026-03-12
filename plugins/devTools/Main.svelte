@@ -1,15 +1,14 @@
 <script lang="ts">
-  import type { PluginContext } from "../../src/plugin";
+  import type { PluginContext } from "@src/plugin";
+  import { config } from "@src/store";
   let { vm }: PluginContext = $props();
   let vmKey = $state("vm");
 
-  let enableFreeze = $state(
-    localStorage.getItem("devtools.freeze") == "false" ? false : true,
-  );
+  let enableFreeze = !!$config["devtools.freeze"];
   const emptyFunc = () => null;
   let origStep_: () => void = $state(emptyFunc);
   $effect(() => {
-    localStorage.setItem("devtools.freeze", String(enableFreeze));
+    $config["devtools.freeze"] = enableFreeze;
     if (!vm) {
       return;
     }
