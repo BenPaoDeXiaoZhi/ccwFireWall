@@ -12,6 +12,7 @@ on:
             - 'vite.config.ts'
             - '.github/**'
             - 'plugins/**'
+            - 'package.json'
 
 jobs:
     build:
