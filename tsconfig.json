@@ -23,5 +23,5 @@
     "types": ["global", "index"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "exclude": ["node_modules/**"]
+  "exclude": ["node_modules/**/*"]
 }
