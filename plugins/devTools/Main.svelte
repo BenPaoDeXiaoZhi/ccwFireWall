@@ -27,6 +27,9 @@
     if (enableFreeze) {
       vm.runtime._step = emptyFunc;
     } else {
+      if(runtimeStep == emptyFunc) {
+        return; //等待origin正确
+      }
       vm.runtime._step = runtimeStep;
     }
   });
