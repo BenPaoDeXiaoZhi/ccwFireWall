@@ -20,9 +20,11 @@
       }
       origStep_ = vm.runtime._step;
       vm.runtime._step = emptyFunc;
+      vm = vm; // reassign to rerender
     } else if (origStep_ != emptyFunc) {
       vm.runtime._step = origStep_;
       origStep_ = emptyFunc;
+      vm = vm;
     }
   });
 </script>
