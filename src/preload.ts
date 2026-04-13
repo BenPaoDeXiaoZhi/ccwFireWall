@@ -1,1 +1,1 @@
-import "./adapter.ts";
+import "./adapter";
