@@ -33,7 +33,7 @@ const propsDefine = {
       loader.set(this);
       console.log(this);
     }
-    if(this && this.loadProject){
+    if(this && this.storeProject){
       writer.set(this);
       console.log(this);
     }
