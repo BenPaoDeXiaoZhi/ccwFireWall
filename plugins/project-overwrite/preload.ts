@@ -9,9 +9,8 @@ const propsDefine = {
   },
   set(this: GandiState, v: any){
     this.props_ = v;
-    console.log(this);
     if(v && "ccwCDNHost" in v){
-      console.log(this, v);
+      console.log(this);
     }
   }
 }
