@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 
 type GandiState = {
   props: any;
@@ -28,6 +28,9 @@ const propsDefine = {
     if(this && this.loadProject){
       loader.set(this);
       console.log(this);
+    }
+    if(get(fetcher) && get(loader)){
+      delete Object.prototype.props;
     }
   }
 }
