@@ -1,8 +1,9 @@
 type MaybeWithRuntime = { runtime: GandiRuntime } | any;
+import { config } from "#src/store";
+import { get } from "svelte/store";
 
-const useBind =
-  localStorage.getItem("firewall.useBind") == "true" ? true : false;
-localStorage.setItem("firewall.useBind", useBind ? "true" : "false");
+const useBind = !!get(config).useBind;
+config.update((c)=>c.useBind=useBind);
 
 export function startTrap(): Promise<GandiVM> {
   console.log(`useBind:${useBind}`);
