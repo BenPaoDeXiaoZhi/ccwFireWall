@@ -5,10 +5,10 @@ type GandiState = {
   props_: any;
 };
 
-type Fetcher{
+type Fetcher = {
   fetchProject(): void;
 }
-type Loader{
+type Loader = {
   loadProject(): void;
 }
 
