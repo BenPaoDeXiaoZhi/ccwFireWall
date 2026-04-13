@@ -1,7 +1,7 @@
 import { mount } from "svelte";
 import App from "./App.svelte";
 import plugins from "../plugins/plugin-manifest";
-import "./adapter";
+import "./preload";
 
 let { document, localStorage } = unsafeWindow;
 
