@@ -29,9 +29,6 @@ const propsDefine = {
       loader.set(this);
       console.log(this);
     }
-    if(get(fetcher) && get(loader)){
-      delete Object.prototype.props;
-    }
   }
 }
 
