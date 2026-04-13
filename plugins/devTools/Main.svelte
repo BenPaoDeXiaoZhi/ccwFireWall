@@ -8,7 +8,7 @@
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-  let freezed = $state(runtime?._step == emptyFunc);
+  let freezed = $derived(runtime?._step == emptyFunc);
 
   $effect(() => {
     if (!runtime) {
@@ -21,8 +21,7 @@
       runtime._step = emptyFunc;
     } else {
       runtime._step = runtimeStep;
-    }
-    freezed = runtime._step == emptyFunc;
+    };
   });
 
 </script>
