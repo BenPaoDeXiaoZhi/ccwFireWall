@@ -30,9 +30,7 @@
   });
 
 
-  let consoleRedirect = $state(
-      !!$config.consoleRedirect
-  );
+  let consoleRedirect = !!$config.consoleRedirect
 </script>
 
 <li id="vm">
