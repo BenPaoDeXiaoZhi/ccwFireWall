@@ -11,9 +11,13 @@ type Fetcher = {
 type Loader = {
   loadProject(): void;
 }
+type Writer = {
+  storeProject(): void;
+}
 
 export const fetcher=writable<Fetcher>();
 export const loader=writable<Loader>();
+export const writer=writable<Writer>();
 
 const propsDefine = {
   get(this: GandiState){
@@ -27,6 +31,10 @@ const propsDefine = {
     }
     if(this && this.loadProject){
       loader.set(this);
+      console.log(this);
+    }
+    if(this && this.loadProject){
+      writer.set(this);
       console.log(this);
     }
   }
