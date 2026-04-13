@@ -4,9 +4,6 @@
   let { vm }: PluginContext = $props();
   let vmKey = $state("vm");
 
-  let enableFreeze = $state(
-      !!$config["devtools.freeze"]
-  );
   let runtime = $derived(vm?.runtime);
 
   const emptyFunc = () => null;
@@ -14,14 +11,13 @@
   let freezed = $state(runtime?._step == emptyFunc);
 
   $effect(() => {
-    $config["devtools.freeze"] = enableFreeze;
     if (!runtime) {
       return;
     }
     if(runtimeStep == emptyFunc){
       runtimeStep = runtime._step;
     };
-    if (enableFreeze) {
+    if (!!$config["devtools.freeze"]) {
       runtime._step = emptyFunc;
     } else {
       runtime._step = runtimeStep;
@@ -29,8 +25,6 @@
     freezed = runtime._step == emptyFunc;
   });
 
-
-  let consoleRedirect = !!$config.consoleRedirect
 </script>
 
 <li id="vm">
@@ -51,13 +45,13 @@
 <li id="freeze">
   <label>
     暂停自动执行({freezed ? "已暂停" : "未暂停"})
-    <input type="checkbox" bind:checked={enableFreeze} />
+    <input type="checkbox" bind:checked={$config["devtools.freeze"]} />
   </label>
 </li>
 <li id="console">
   <label>
     console重定向(用于eruda调试)
-    <input type="checkbox" bind:checked={consoleRedirect} />
+    <input type="checkbox" bind:checked={$config.consoleRedirect} />
   </label>
 </li>
 
