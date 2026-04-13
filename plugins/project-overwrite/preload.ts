@@ -1,7 +1,19 @@
+import { writable } from "svelte/store";
+
 type GandiState = {
   props: any;
   props_: any;
 };
+
+type Fetcher{
+  fetchProject(): void;
+}
+type Loader{
+  loadProject(): void;
+}
+
+export const fetcher=writable<Fetcher>();
+export const loader=writable<Loader>();
 
 const propsDefine = {
   get(this: GandiState){
@@ -9,7 +21,12 @@ const propsDefine = {
   },
   set(this: GandiState, v: any){
     this.props_ = v;
-    if(v && "ccwCDNHost" in v){
+    if(this && this.fetchProject){
+      fetcher.set(this);
+      console.log(this);
+    }
+    if(this && this.loadProject){
+      loader.set(this);
       console.log(this);
     }
   }
