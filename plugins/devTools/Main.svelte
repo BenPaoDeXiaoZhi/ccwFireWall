@@ -22,6 +22,7 @@
     } else {
       runtime._step = runtimeStep;
     };
+    freezed = runtime._step == emptyFunc;
   });
 
 </script>
