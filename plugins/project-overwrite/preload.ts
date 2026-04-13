@@ -9,7 +9,7 @@ const propsDefine = {
   },
   set(this: GandiState, v: any){
     this.props_ = v;
-    if("assetHost" in v){
+    if(v && "assetHost" in v){
       console.log(this, v);
     }
   }
