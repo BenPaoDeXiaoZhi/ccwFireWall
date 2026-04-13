@@ -8,7 +8,7 @@
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-  let freezed = $derived($state.raw(runtime?._step) == emptyFunc);
+  let freezed = $state($state.snapshot(runtime)?._step == emptyFunc);
 
   $effect(() => {
     if (!runtime) {
