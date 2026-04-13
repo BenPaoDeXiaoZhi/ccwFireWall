@@ -28,6 +28,11 @@
     }
     freezed = runtime._step == emptyFunc;
   });
+
+
+  let consoleRedirect = $state(
+      !!$config.consoleRedirect
+  );
 </script>
 
 <li id="vm">
@@ -49,6 +54,12 @@
   <label>
     暂停自动执行({freezed ? "已暂停" : "未暂停"})
     <input type="checkbox" bind:checked={enableFreeze} />
+  </label>
+</li>
+<li id="console">
+  <label>
+    console重定向(用于eruda调试)
+    <input type="checkbox" bind:checked={consoleRedirect} />
   </label>
 </li>
 
