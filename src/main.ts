@@ -7,7 +7,6 @@ import plugins from "#plugins/plugin-manifest";
 let { document, localStorage } = unsafeWindow;
 
 const rootContainer = document.createElement("div");
-document.body.appendChild(rootContainer);
 let target: HTMLElement;
 if (localStorage.getItem("firewall.noShadow") != "true") {
   var shadowRoot = rootContainer.attachShadow({ mode: "closed" });
@@ -16,6 +15,14 @@ if (localStorage.getItem("firewall.noShadow") != "true") {
 } else {
   console.warn("未使用shadow dom，可能暴露");
   target = rootContainer;
+}
+
+function insert(){
+  if(document.body){
+    document.body.appendChild(rootContainer);
+    return;
+  }
+  requestAnimationFrame(insert);
 }
 
 const app = mount(App, {
@@ -27,4 +34,4 @@ const app = mount(App, {
   },
 });
 
-export default app;
+insert();
