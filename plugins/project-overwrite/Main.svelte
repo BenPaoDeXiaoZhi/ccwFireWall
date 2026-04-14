@@ -1,12 +1,15 @@
+<script module lang="ts">
+  export const isInEditor = document.location.pathname.startsWith("/gandi/project/");
+  export function getNoAutoSave(){
+    return noAutoSave;
+  }
+</script>
+
 <script lang="ts">
   import type { PluginContext } from "#src/plugin";
   import { config } from "#src/store";
   const { vm }: PluginContext = $props();
-  export const isInEditor = document.location.pathname.startsWith("/gandi/project/");
   let noAutoSave = $state(true);
-  export function getNoAutoSave(){
-    return noAutoSave;
-  }
 </script>
 
 {#if isInEditor}
