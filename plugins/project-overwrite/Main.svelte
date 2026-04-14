@@ -3,7 +3,10 @@
   import { config } from "#src/store";
   const { vm }: PluginContext = $props();
   export const isInEditor = document.location.pathname.startsWith("/gandi/project/");
-  export let noAutoSave = $state(true);
+  let noAutoSave = $state(true);
+  export function getNoAutoSave(){
+    return noAutoSave;
+  }
 </script>
 
 {#if isInEditor}
