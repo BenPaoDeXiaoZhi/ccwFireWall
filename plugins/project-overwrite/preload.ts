@@ -1,5 +1,6 @@
 import { config } from "#src/store";
 import { get } from "svelte/store";
+import { isInEditor, getNoAutoSave } from "./Main.svelte";
 
 type GandiState = {
   props: any;
@@ -68,15 +69,23 @@ export function getStates() {
 }
 
 if (
-  get(config)["overwrite.enable"] &&
-  document.location.pathname.startsWith("/gandi/project/")
+  get(config)["overwrite.enable"] && 
+  isInEditor)
 ) {
   getStates().then(({ fetcher, loader, writer }) => {
     const { fetchProject } = fetcher;
+    const { tryToAutoSave } = writer;
     fetcher.fetchProject = function (url: string) {
       console.log(url);
       const newUrl=prompt(`作品想要加载${url}，将其替换为`, url);
       fetchProject(newUrl, "FETCHING_WITH_ID");
+    };
+
+    writer.tryToAutoSave = function(){
+      if(getNoAutoSave()){
+        return;
+      }
+      tryToAutoSave();
     };
   });
 }
