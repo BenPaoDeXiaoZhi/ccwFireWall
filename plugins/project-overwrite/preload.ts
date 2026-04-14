@@ -68,7 +68,10 @@ export function getStates() {
   return new Promise(check);
 }
 
-export let noAutoSave = true;
+let noAutoSave = true;
+export function setNoAutoSave(v: boolean){
+  noAutoSave = v;
+}
 
 if (
   get(config)["overwrite.enable"] && 
