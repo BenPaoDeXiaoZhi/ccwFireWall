@@ -1,4 +1,6 @@
 import { config } from "#src/store";
+import { get } from "svelte/store";
+
 type GandiState = {
   props: any;
   props_: any;
@@ -63,4 +65,14 @@ export function getStates() {
     });
   }
   return new Promise(check);
+}
+
+if(get(config)["overwrite.enable"]){
+  getStates.then(({ fetcher, loader, writer }) => {
+    const { fetchProject } = fetcher;
+    fetcher.fetchProject = function (url: string) {
+      debugger;
+      fetchProject(url, "FETCHING_WITH_ID");
+    };
+  })
 }
