@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { PluginContext } from "#src/plugin";
-  import { type Fetcher, getStates } from "./preload";
   import { config } from "#src/store";
   const { vm }: PluginContext = $props();
   let isInEditor = $state(
