@@ -1,6 +1,6 @@
 import { config } from "#src/store";
 import { get } from "svelte/store";
-import { isInEditor, getNoAutoSave } from "./Main.svelte";
+import { isInEditor } from "./Main.svelte";
 
 type GandiState = {
   props: any;
@@ -68,10 +68,11 @@ export function getStates() {
   return new Promise(check);
 }
 
+export let noAutoSave = true;
+
 if (
   get(config)["overwrite.enable"] && 
-  isInEditor)
-) {
+  isInEditor){
   getStates().then(({ fetcher, loader, writer }) => {
     const { fetchProject } = fetcher;
     const { tryToAutoSave } = writer;
@@ -82,7 +83,7 @@ if (
     };
 
     writer.tryToAutoSave = function(){
-      if(getNoAutoSave()){
+      if(noAutoSave){
         return;
       }
       tryToAutoSave();
