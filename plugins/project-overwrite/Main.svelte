@@ -6,27 +6,13 @@
   let isInEditor = $state(
     document.location.pathname.startsWith("/gandi/project/"),
   );
-  let fetcher: Fetcher = $state.raw();
-  getStates().then(({ fetcher }) => {
-    fetcher = fetcher;
-    debugger;
-  });
-  $effect(() => {
-    if (fetcher) {
-      const { fetchProject } = fetcher;
-      fetcher.fetchProject = function (url: string) {
-        debugger;
-        fetchProject(url, "FETCHING_WITH_ID");
-      };
-    }
-  });
 </script>
 
 {#if isInEditor}
   <li id="vm">
     <label>
-      替换加载的sb3文件
-      <input type="checkbox" bind:checked={$config["overwrite.enableLoad"]} />
+      替换sb3文件
+      <input type="checkbox" bind:checked={$config["overwrite.enable"]} />
     </label>
   </li>
   <li id="reload">
