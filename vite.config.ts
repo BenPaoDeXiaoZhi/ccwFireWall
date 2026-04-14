@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
             "https://*.ccw.site/player/*",
           ],
           grant: ["unsafeWindow", "GM_getValue", "GM_setValue"],
-          "run-at": "document-body",
+          "run-at": mode == "development" ? "document-start" : "document-body",
         },
       }),
     ],

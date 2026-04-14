@@ -67,12 +67,15 @@ export function getStates() {
   return new Promise(check);
 }
 
-if(get(config)["overwrite.enable"]){
-  getStates.then(({ fetcher, loader, writer }) => {
+if (
+  get(config)["overwrite.enable"] &&
+  document.location.pathname.startsWith("/gandi/project/")
+) {
+  getStates().then(({ fetcher, loader, writer }) => {
     const { fetchProject } = fetcher;
     fetcher.fetchProject = function (url: string) {
       console.log(url);
       fetchProject(url, "FETCHING_WITH_ID");
     };
-  })
+  });
 }
