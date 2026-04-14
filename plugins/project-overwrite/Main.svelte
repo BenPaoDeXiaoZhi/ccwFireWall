@@ -1,8 +1,5 @@
 <script module lang="ts">
   export const isInEditor = document.location.pathname.startsWith("/gandi/project/");
-  export function getNoAutoSave(){
-    return noAutoSave;
-  }
 </script>
 
 <script lang="ts">
