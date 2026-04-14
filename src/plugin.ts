@@ -3,11 +3,11 @@ import type { Component } from "svelte";
 export class Plugin {
   name: string;
   icon: string | Component;
-  main: Component<PluginContext> | FunctionPlugin;
+  main: Component<PluginContext>;
   constructor(
     name: string,
     icon: string | Component,
-    main: Component<PluginContext> | FunctionPlugin,
+    main: Component<PluginContext>,
   ) {
     this.name = name;
     this.icon = icon;
@@ -20,16 +20,3 @@ export type PluginContext = {
   container: HTMLElement;
   root: HTMLElement | ShadowRoot;
 };
-
-type Fn = (ctx: PluginContext) => any;
-
-export class FunctionPlugin {
-  init: Fn;
-  update: Fn;
-  dispose: Fn;
-  constructor(init: Fn, update: Fn, dispose: Fn) {
-    this.init = init;
-    this.update = update;
-    this.dispose = dispose;
-  }
-}

@@ -10,7 +10,7 @@
   };
   let { page = 0, plugins, root }: Props = $props();
   let vm: GandiVM = $state.raw();
-  const current = $derived(plugins[page]);
+  const currentPlugin = $derived(plugins[page]);
   const offset = $state({
     x: 20,
     y: 20,
@@ -20,18 +20,10 @@
     x: 0,
     y: 0,
   });
+  let moving = $state(false);
   let container: HTMLElement = $state();
   let headerHeight = $state(20);
   startTrap().then((gandiVM) => (vm = gandiVM));
-  $effect(() => {
-    if ("init" in current.main) {
-      current.main.init({
-        vm,
-        container,
-        root,
-      });
-    }
-  });
 </script>
 
 <main
@@ -47,14 +39,19 @@
       }
       offset.x = e.clientX - mouseOffset.x;
       offset.y = e.clientY - mouseOffset.y;
+      moving = true;
     }}
     onpointerdown={(e) => {
       mouseOffset.x = e.offsetX;
       mouseOffset.y = e.offsetY;
       e.stopPropagation();
     }}
-    onclick={() => {
-      show = !show;
+    onpointerup={() => {
+      if (moving) {
+        moving = false;
+      } else {
+        show = !show;
+      }
     }}
     tabindex="0"
     style:background-color={vm ? "lightgreen" : "pink"}
@@ -65,9 +62,9 @@
   <div id="body" style:opacity={show ? 1 : 0}>
     <NavBar {plugins} bind:page />
     <div bind:this={container}>
-      <header style:height={headerHeight}>{current.name}</header>
-      {#if !("init" in current.main)}
-        <current.main {vm} {container} {root} />
+      <header style:height={headerHeight}>{currentPlugin.name}</header>
+      {#if !("init" in currentPlugin.main)}
+        <currentPlugin.main {vm} {container} {root} />
       {/if}
     </div>
   </div>

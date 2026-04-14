@@ -2,29 +2,28 @@
   import type { PluginContext } from "#src/plugin";
   import { config } from "#src/store";
   let { vm }: PluginContext = $props();
-  let vmKey = $state("vm");
 
+  let vmKey = $state("vm");
   let runtime = $derived(vm?.runtime);
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-  let freezed = $state($state.snapshot(runtime)?._step == emptyFunc);
+  let freezed = $state(false);
 
   $effect(() => {
     if (!runtime) {
       return;
     }
-    if(runtimeStep == emptyFunc){
+    if (runtimeStep == emptyFunc) {
       runtimeStep = runtime._step;
-    };
+    }
     if (!!$config["devtools.freeze"]) {
       runtime._step = emptyFunc;
     } else {
       runtime._step = runtimeStep;
-    };
-    freezed = runtime._step == emptyFunc;
+    }
+    freezed = runtime?._step == emptyFunc;
   });
-
 </script>
 
 <li id="vm">

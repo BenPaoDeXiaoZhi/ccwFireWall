@@ -5,7 +5,10 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "paths": { "scratch-vm": ["./node_modules/@turbowarp/types/index.d.ts"] },
+    "paths": {
+      "scratch-vm": ["./node_modules/@turbowarp/types/index.d.ts"],
+      "#*": ["./*"]
+    },
     "noEmit": true,
     /**
      * Typecheck JS in `.svelte` and `.js` files by default.
@@ -23,5 +26,5 @@
     "types": ["global", "index"]
   },
   "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
-  "exclude": ["node_modules/**/*"]
+  "exclude": ["node_modules"]
 }

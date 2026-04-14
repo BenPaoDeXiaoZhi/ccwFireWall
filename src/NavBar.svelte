@@ -12,6 +12,7 @@
       onclick={() => {
         page = id;
       }}
+      class={page == id ? "checked" : ""}
     >
       <span>{plugin.name}</span>
     </button>
@@ -24,12 +25,27 @@
     height: 100%;
     overflow: hidden;
     border-right: 1px gray solid;
-    display: block;
+    display: flex;
+    flex-direction: column;
+  }
+
+  span {
+    font-size: 15px;
   }
 
   button {
     color: black;
     width: 100%;
+    height: 25px;
     border: none;
+    transition: 0.1s;
+  }
+
+  button:hover {
+    background-color: lightgray;
+  }
+
+  button.checked {
+    background-color: rgb(181, 180, 180);
   }
 </style>

@@ -1,5 +1,5 @@
 type MaybeWithRuntime = { runtime: GandiRuntime } | any;
-import { config } from "#src/store";
+import { config } from "./store";
 import { get } from "svelte/store";
 
 const useBind = !!get(config).useBind;

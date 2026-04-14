@@ -1,43 +1,66 @@
-import { writable, get } from "svelte/store";
-
+import { config } from "#src/store";
 type GandiState = {
   props: any;
   props_: any;
 };
 
-type Fetcher = {
-  fetchProject(): void;
-}
-type Loader = {
+export type Fetcher = GandiState & {
+  fetchProject(url: string, t: "FETCHING_WITH_ID"): void;
+};
+export type Loader = GandiState & {
   loadProject(): void;
-}
-type Writer = {
+};
+export type Writer = GandiState & {
   storeProject(): void;
-}
+};
+type ProjectStates = Fetcher | Loader | Writer;
 
-export const fetcher=writable<Fetcher>();
-export const loader=writable<Loader>();
-export const writer=writable<Writer>();
+let fetcher: Fetcher;
+let loader: Loader;
+let writer: Writer;
 
-const propsDefine = {
-  get(this: GandiState){
+const propsDefine: PropertyDescriptor = {
+  get(this: ProjectStates) {
     return this.props_;
   },
-  set(this: GandiState, v: any){
-    this.props_ = v;
-    if(this && this.fetchProject){
-      fetcher.set(this);
+  set(this: ProjectStates, v: any) {
+    Object.defineProperty(this, "props_", {
+      value: v,
+      enumerable: false,
+      configurable: true,
+    });
+    if (this && "fetchProject" in this && !fetcher) {
+      fetcher = this;
       console.log(this);
     }
-    if(this && this.loadProject){
-      loader.set(this);
+    if (this && "loadProject" in this && !loader) {
+      loader = this;
       console.log(this);
     }
-    if(this && this.storeProject){
-      writer.set(this);
+    if (this && "storeProject" in this && !writer) {
+      writer = this;
       console.log(this);
     }
-  }
-}
+  },
+  enumerable: false,
+};
 
-Object.defineProperty(Object.prototype, "props", propsDefine)
+Object.defineProperty(Object.prototype, "props", propsDefine);
+
+export function getStates() {
+  function check(
+    resolve: (value: {
+      fetcher: Fetcher;
+      loader: Loader;
+      writer: Writer;
+    }) => void,
+  ) {
+    if (fetcher && loader && writer) {
+      resolve({ fetcher, loader, writer });
+    }
+    requestAnimationFrame(() => {
+      check(resolve);
+    });
+  }
+  return new Promise(check);
+}
