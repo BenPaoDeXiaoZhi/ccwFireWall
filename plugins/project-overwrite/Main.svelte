@@ -5,8 +5,12 @@
 <script lang="ts">
   import type { PluginContext } from "#src/plugin";
   import { config } from "#src/store";
+  import { setNoAutoSave } from "./preload"
   const { vm }: PluginContext = $props();
   let noAutoSave = $state(true);
+  $effect(()=>{
+    setNoAutoSave(noAutoSave)
+  })
 </script>
 
 {#if isInEditor}
