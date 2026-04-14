@@ -2,7 +2,7 @@
   import type { PluginContext } from "#src/plugin";
   import { config } from "#src/store";
   const { vm }: PluginContext = $props();
-  export const isInEditor =  document.location.pathname.startsWith("/gandi/project/")
+  export const isInEditor = document.location.pathname.startsWith("/gandi/project/")
 </script>
 
 {#if isInEditor}
