@@ -75,7 +75,8 @@ if (
     const { fetchProject } = fetcher;
     fetcher.fetchProject = function (url: string) {
       console.log(url);
-      fetchProject(url, "FETCHING_WITH_ID");
+      const newUrl=prompt(`作品想要加载${url}，将其替换为`, url);
+      fetchProject(newUrl, "FETCHING_WITH_ID");
     };
   });
 }
