@@ -71,7 +71,7 @@ if(get(config)["overwrite.enable"]){
   getStates.then(({ fetcher, loader, writer }) => {
     const { fetchProject } = fetcher;
     fetcher.fetchProject = function (url: string) {
-      debugger;
+      console.log(url);
       fetchProject(url, "FETCHING_WITH_ID");
     };
   })
