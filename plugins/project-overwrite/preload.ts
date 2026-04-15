@@ -85,14 +85,14 @@ if (
     fetcher.fetchProject = function (url: string) {
       console.log(url);
       const newUrl=prompt(`作品想要加载${url}，将其替换为`, url);
-      fetchProject(newUrl, "FETCHING_WITH_ID");
+      fetchProject.call(this, newUrl, "FETCHING_WITH_ID");
     };
 
     writer.tryToAutoSave = function(){
       if(noAutoSave){
         return;
       }
-      tryToAutoSave();
+      tryToAutoSave.call(this);
     };
 
     writer.storeProject = function(url: string, project: string){
@@ -100,13 +100,13 @@ if (
       String.prototype.concat = function(...args: string[]){
         console.log(this, args);
         const url = concat.call(this, ...args);
-        if(this.startsWith(writer.props.ccwCDNHost)){
+          if(url.startsWith(`${writer.props.ccwCDNHost}/user_project_sb3`)){
           String.prototype.concat = concat;
           return prompt(`作品想要保存至${url}，将其替换为`, url);
         }
         return url;
       }
-      return storeProject(url, project);
+      return storeProject.call(this, url, project);
     };
   });
 }
