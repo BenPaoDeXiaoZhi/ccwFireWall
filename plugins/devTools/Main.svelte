@@ -8,7 +8,6 @@
 
   const emptyFunc = () => null;
   let runtimeStep: () => void = $state(emptyFunc);
-  let freezed = $state(false);
 
   $effect(() => {
     if (!runtime) {
@@ -25,7 +24,13 @@
     const { extensionManager } = runtime;
     const { _prepareExtensionInfo } = extensionManager;
     extensionManager._prepareExtensionInfo = function(name, info){
-      console.log(name, info);
+      if($config.showHiddenBlocks){
+        info.blocks.forEach((b)=>{
+          if(b.hideFromPalette){
+            b.hideFromPalette = false;
+          }
+        }
+      }
       return _prepareExtensionInfo.call(this, name, info);
     }
   });
@@ -50,6 +55,12 @@
   <label>
     暂停执行
     <input type="checkbox" bind:checked={$config["devtools.freeze"]} />
+  </label>
+</li>
+<li id="console">
+  <label>
+    显示隐藏的积木
+    <input type="checkbox" bind:checked={$config.showHiddenBlocks} />
   </label>
 </li>
 <li id="console">
