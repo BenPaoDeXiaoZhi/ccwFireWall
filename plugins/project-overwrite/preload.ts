@@ -23,13 +23,9 @@ let loader: Loader;
 let writer: Writer;
 
 const propsDefine: PropertyDescriptor = {
-  get(this: ProjectStates) {
-    return this.props_;
-  },
   set(this: ProjectStates, v: any) {
-    Object.defineProperty(this, "props_", {
+    Object.defineProperty(this, "props", {
       value: v,
-      enumerable: false,
       configurable: true,
     });
     if (this && "fetchProject" in this && !fetcher) {
@@ -46,6 +42,7 @@ const propsDefine: PropertyDescriptor = {
     }
   },
   enumerable: false,
+  configurable: true,
 };
 
 Object.defineProperty(Object.prototype, "props", propsDefine);
@@ -60,6 +57,7 @@ export function getStates() {
   ) {
     if (fetcher && loader && writer) {
       resolve({ fetcher, loader, writer });
+      delete Object.prototype.props;
     }
     requestAnimationFrame(() => {
       check(resolve);
