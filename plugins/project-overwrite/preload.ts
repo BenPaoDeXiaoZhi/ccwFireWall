@@ -27,6 +27,8 @@ const propsDefine: PropertyDescriptor = {
     Object.defineProperty(this, "props", {
       value: v,
       configurable: true,
+      enumerable: true,
+      writable: true,
     });
     if (this && "fetchProject" in this && !fetcher) {
       fetcher = this;
