@@ -36,7 +36,7 @@ function run(){
 <li id="output">
   <label>
     编译后结果
-    <input bind:value={output} onfocus={function(){this.focus()}}/>
+    <input bind:value={output} onfocus={function(){this.select()}}/>
   </label>
 </li>
 
