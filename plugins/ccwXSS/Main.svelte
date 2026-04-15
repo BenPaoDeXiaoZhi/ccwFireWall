@@ -4,16 +4,16 @@
   let { vm }: PluginContext = $props();
 
   function escapeAscii(char: string){
-    return `\x${char.charCodeAt(0).toString(16).padStart(2, "0")}`;
+    return `\\x${char.charCodeAt(0).toString(16).padStart(2, "0")}`;
   }
   const needEscape = Array.from(`()[]{}'"`);
   
   let input = $state("");
   let output = $derived.by(()=>{
-    const encrypted = needEscape.reduce((code, char)=>{
+    return needEscape.reduce((code, char)=>{
       return code.replaceAll(char, escapeAscii(char));
-    }
-  }, input);
+    }, input);
+  });
 </script>
 
 <li id="input">
