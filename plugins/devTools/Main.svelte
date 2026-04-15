@@ -29,7 +29,7 @@
           if(b.hideFromPalette){
             b.hideFromPalette = false;
           }
-        }
+        })
       }
       return _prepareExtensionInfo.call(this, name, info);
     }
