@@ -14,15 +14,20 @@
     if (!runtime) {
       return;
     }
-    if (runtimeStep == emptyFunc) {
-      runtimeStep = runtime._step;
+    const { _step } = runtime;
+    runtime._step = function(){
+      if($config["devtools.freeze"]){
+        return;
+      }
+      _step.call(this);
     }
-    if (!!$config["devtools.freeze"]) {
-      runtime._step = emptyFunc;
-    } else {
-      runtime._step = runtimeStep;
+    
+    const { extensionManager } = runtime;
+    const { _prepareExtensionInfo } = extensionManager;
+    extensionManager._prepareExtensionInfo = function(name, info){
+      console.log(name, info);
+      return _prepareExtensionInfo.call(this, name, info);
     }
-    freezed = runtime?._step == emptyFunc;
   });
 </script>
 
@@ -43,7 +48,7 @@
 </li>
 <li id="freeze">
   <label>
-    暂停自动执行({freezed ? "已暂停" : "未暂停"})
+    暂停执行
     <input type="checkbox" bind:checked={$config["devtools.freeze"]} />
   </label>
 </li>
