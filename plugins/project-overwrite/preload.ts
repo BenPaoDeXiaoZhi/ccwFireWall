@@ -14,7 +14,8 @@ export type Loader = GandiState & {
   loadProject(): void;
 };
 export type Writer = GandiState & {
-  storeProject(): void;
+  storeProject(url: string, project: string): Promise;
+  tryToAutoSave(): void;
 };
 type ProjectStates = Fetcher | Loader | Writer;
 
@@ -92,7 +93,7 @@ if (
       tryToAutoSave();
     };
 
-    writer.storeProject = function(url: string, package: string){
+    writer.storeProject = function(url: string, project: string){
       const { concat } = String.prototype;
       String.prototype.concat = function(...args: string[]){
         console.log(this, args);
@@ -103,7 +104,7 @@ if (
         }
         return url;
       }
-      tryToAutoSave();
+      return storeProject(url: string, project: string);
     };
   });
 }
