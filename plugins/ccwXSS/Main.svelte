@@ -25,6 +25,24 @@ function run(){
     }, patchedCode);
     return `toString.constructor\`${escaped}\`\`\``;
   });
+  $effect(()=>{
+    if(!$vm){
+      return;
+    }
+    const { runtime } = $vm;
+    if("ext_CCWData" in runtime){
+      const { ext_CCWData } = runtime;
+      const { getInfo } = ext_CCWData;
+      ext_CCWData.getInfo = function(){
+        const info = getInfo.call(this);
+        console.log(info);
+        info.blocks.forEach((b)=>{
+          b.hideInPalette = false;
+        })
+        return info;
+      }
+    }
+  })
 </script>
 
 <li id="input">
