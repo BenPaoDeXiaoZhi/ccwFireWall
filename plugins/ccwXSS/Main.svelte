@@ -22,7 +22,7 @@ function run(){
     const patchedCode = `${prefix}${input}}`
     const escaped = needEscape.reduce((code, char)=>{
       return code.replaceAll(char, escapeAscii(char));
-    }, input);
+    }, patchedCode);
     return `toString.constructor\`${escaped}\`\`\``;
   });
 </script>
