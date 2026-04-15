@@ -14,7 +14,7 @@ export type Loader = GandiState & {
   loadProject(): void;
 };
 export type Writer = GandiState & {
-  storeProject(url: string, project: string): Promise;
+  storeProject(url: string, project: string): Promise<any>;
   tryToAutoSave(): void;
 };
 type ProjectStates = Fetcher | Loader | Writer;
@@ -60,7 +60,9 @@ export function getStates() {
   ) {
     if (fetcher && loader && writer) {
       resolve({ fetcher, loader, writer });
-      delete Object.prototype.props;
+      if("props" in Object.prototype) {
+        delete Object.prototype.props;
+      }
     }
     requestAnimationFrame(() => {
       check(resolve);
@@ -104,7 +106,7 @@ if (
         }
         return url;
       }
-      return storeProject(url: string, project: string);
+      return storeProject(url, project);
     };
   });
 }
