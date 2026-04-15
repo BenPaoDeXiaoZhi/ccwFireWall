@@ -10,7 +10,7 @@ function run(){
   function escapeAscii(char: string){
     return `\\x${char.charCodeAt(0).toString(16).padStart(2, "0")}`;
   }
-  const needEscape = Array.from(`()=[]{}'"`);
+  const needEscape = Array.from(`()=[]{}'". \n`);
 </script>
 <script lang="ts">
   import { PluginContext } from "#src/plugin";
