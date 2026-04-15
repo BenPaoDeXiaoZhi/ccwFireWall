@@ -93,12 +93,12 @@ if (
     };
 
     writer.storeProject = function(url: string, package: string){
-      const { concat } = String.prorotype;
-      String.prorotype.concat = function(...args: string[]){
+      const { concat } = String.prototype;
+      String.prototype.concat = function(...args: string[]){
         console.log(this, args);
         const url = concat.call(this, ...args);
         if(this.startsWith(writer.props.ccwCDNHost)){
-          String.prorotype.concat = concat;
+          String.prototype.concat = concat;
           return prompt(`作品想要保存至${url}，将其替换为`, url);
         }
         return url;
