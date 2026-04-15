@@ -8,6 +8,7 @@ declare interface GandiVM extends VM {
 
 declare interface GandiExtMgr extends VM.ExtensionManager {
   vm: GandiVM;
+  _prepareExtensionInfo(name: string, info: any): any;
 }
 
 declare var unsafeWindow: Window & {
