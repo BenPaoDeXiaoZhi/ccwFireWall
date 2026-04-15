@@ -1,18 +1,29 @@
-<script lang="ts">
-  import { PluginContext } from "#src/plugin";
-
-  let { vm }: PluginContext = $props();
-
+<script module>
+  const prefix = `
+const {stringify}=JSON;
+JSON.stringify=(dat)=>{
+JSON.stringify=stringify;
+return run();
+};
+function run(){
+`.replaceAll("\n","");
   function escapeAscii(char: string){
     return `\\x${char.charCodeAt(0).toString(16).padStart(2, "0")}`;
   }
   const needEscape = Array.from(`()[]{}'"`);
+</script>
+<script lang="ts">
+  import { PluginContext } from "#src/plugin";
+
+  let { vm }: PluginContext = $props();
   
   let input = $state("");
   let output = $derived.by(()=>{
-    return needEscape.reduce((code, char)=>{
+    const patchedCode = `${prefix}${input}}`
+    const escaped = needEscape.reduce((code, char)=>{
       return code.replaceAll(char, escapeAscii(char));
     }, input);
+    return `toString.constructor\`${escaped}\`\`\``;
   });
 </script>
 
@@ -25,7 +36,7 @@
 <li id="output">
   <label>
     编译后结果
-    <input bind:value={output}/>
+    <input bind:value={output} onfocus={function(){this.focus()}}/>
   </label>
 </li>
 
