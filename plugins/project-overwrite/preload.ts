@@ -100,7 +100,7 @@ if (
       String.prototype.concat = function(...args: string[]){
         console.log(this, args);
         const url = concat.call(this, ...args);
-          if(url.startsWith(`${writer.props.ccwCDNHost}/user_project_sb3`)){
+          if(url.startsWith(`${writer.props.ccwCDNHost}/user_projects_sb3`)){
           String.prototype.concat = concat;
           return prompt(`作品想要保存至${url}，将其替换为`, url);
         }
