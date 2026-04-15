@@ -1,6 +1,8 @@
 <script lang="ts">
   import { PluginContext } from "#src/plugin";
 
+  let { vm }: PluginContext = $props();
+
   function escapeAscii(char: string){
     return `\x${char.charCodeAt(0).toString(16).padStart(2, "0")}`;
   }
