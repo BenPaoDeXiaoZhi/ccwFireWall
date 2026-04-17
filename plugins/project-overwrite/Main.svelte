@@ -1,16 +1,17 @@
 <script module lang="ts">
-  export const isInEditor = document.location.pathname.startsWith("/gandi/project/");
+  export const isInEditor =
+    document.location.pathname.startsWith("/gandi/project/");
 </script>
 
 <script lang="ts">
   import type { PluginContext } from "#src/plugin";
   import { config } from "#src/store";
-  import { setNoAutoSave } from "./preload"
+  import { setNoAutoSave } from "./preload";
   const { vm }: PluginContext = $props();
   let noAutoSave = $state(true);
-  $effect(()=>{
-    setNoAutoSave(noAutoSave)
-  })
+  $effect(() => {
+    setNoAutoSave(noAutoSave);
+  });
 </script>
 
 {#if isInEditor}
@@ -29,7 +30,9 @@
     </li>
   {/if}
   <li id="reload">
-    <button onclick={() => document.location.reload()}>重新加载作品</button>
+    <button onclick={() => document.location.reload()}
+      >重新加载作品(替换启用或禁用后请重载)</button
+    >
   </li>
 {:else}
   <b>请使用gandi编辑器打开</b>

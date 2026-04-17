@@ -17,8 +17,8 @@ if (localStorage.getItem("firewall.noShadow") != "true") {
   target = rootContainer;
 }
 
-function insert(){
-  if(document.body){
+function insert() {
+  if (document.body) {
     document.body.appendChild(rootContainer);
     return;
   }

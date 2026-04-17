@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import monkey from "vite-plugin-monkey";
 
-const VERSION = "0.0.0";
+const VERSION = "0.1.0";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
             "https://*.ccw.site/player/*",
           ],
           grant: ["unsafeWindow", "GM_getValue", "GM_setValue"],
-          "run-at": "document-start"
+          "run-at": "document-start",
         },
       }),
     ],

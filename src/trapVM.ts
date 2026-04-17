@@ -3,7 +3,7 @@ import { config } from "./store";
 import { get } from "svelte/store";
 
 const useBind = !!get(config).useBind;
-config.update((c)=>(c.useBind=useBind,c));
+config.update((c) => ((c.useBind = useBind), c));
 
 export function startTrap(): Promise<GandiVM> {
   console.log(`useBind:${useBind}`);

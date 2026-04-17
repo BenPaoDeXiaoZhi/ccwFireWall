@@ -60,7 +60,7 @@ export function getStates() {
   ) {
     if (fetcher && loader && writer) {
       resolve({ fetcher, loader, writer });
-      if("props" in Object.prototype) {
+      if ("props" in Object.prototype) {
         delete Object.prototype.props;
       }
     }
@@ -72,40 +72,38 @@ export function getStates() {
 }
 
 let noAutoSave = true;
-export function setNoAutoSave(v: boolean){
+export function setNoAutoSave(v: boolean) {
   noAutoSave = v;
 }
 
-if (
-  get(config)["overwrite.enable"] && 
-  isInEditor){
+if (get(config)["overwrite.enable"] && isInEditor) {
   getStates().then(({ fetcher, loader, writer }) => {
     const { fetchProject } = fetcher;
     const { tryToAutoSave, storeProject } = writer;
     fetcher.fetchProject = function (url: string) {
       console.log(url);
-      const newUrl=prompt(`作品想要加载${url}，将其替换为`, url);
+      const newUrl = prompt(`作品想要加载${url}，将其替换为`, url) ?? url;
       fetchProject.call(this, newUrl, "FETCHING_WITH_ID");
     };
 
-    writer.tryToAutoSave = function(){
-      if(noAutoSave){
+    writer.tryToAutoSave = function () {
+      if (noAutoSave) {
         return;
       }
       tryToAutoSave.call(this);
     };
 
-    writer.storeProject = function(url: string, project: string){
+    writer.storeProject = function (url: string, project: string) {
       const { concat } = String.prototype;
-      String.prototype.concat = function(...args: string[]){
+      String.prototype.concat = function (...args: string[]) {
         console.log(this, args);
         const url = concat.call(this, ...args);
-          if(url.startsWith(`${writer.props.ccwCDNHost}/user_projects_sb3`)){
+        if (url.startsWith(`${writer.props.ccwCDNHost}/user_projects_sb3`)) {
           String.prototype.concat = concat;
-          return prompt(`作品想要保存至${url}，将其替换为`, url);
+          return prompt(`作品想要保存至${url}，将其替换为`, url) ?? url;
         }
         return url;
-      }
+      };
       return storeProject.call(this, url, project);
     };
   });

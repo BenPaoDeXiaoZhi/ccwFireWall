@@ -8,6 +8,5 @@ try {
 }
 export const config = writable(origConfig);
 config.subscribe((cfg) => {
-  console.info(cfg);
   GM_setValue(configKey, cfg);
 });

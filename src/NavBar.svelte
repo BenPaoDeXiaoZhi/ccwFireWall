@@ -22,7 +22,7 @@
 <style>
   nav {
     width: 100%;
-    height: 100%;
+    height: 180px;
     overflow: hidden;
     border-right: 1px gray solid;
     display: flex;
