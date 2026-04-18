@@ -24,7 +24,7 @@ function run(){
     const escaped = needEscape.reduce((code, char) => {
       return code.replaceAll(char, escapeAscii(char));
     }, patchedCode);
-    return `toString.constructor\`${escaped}\`\`\``;
+    return `toString.constructor\`${escaped}\`\`\`,{}`;
   });
 </script>
 
