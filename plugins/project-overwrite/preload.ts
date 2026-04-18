@@ -19,6 +19,7 @@ export type Writer = GandiState & {
 };
 type ProjectStates = Fetcher | Loader | Writer;
 
+const userSb3='user_projects_sb3';
 let fetcher: Fetcher;
 let loader: Loader;
 let writer: Writer;
@@ -97,12 +98,21 @@ if (get(config)["overwrite.enable"] && isInEditor) {
       const { concat } = String.prototype;
       String.prototype.concat = function (...args: string[]) {
         console.log(this, args);
-        const url = concat.call(this, ...args);
-        if (url.startsWith(`${writer.props.ccwCDNHost}/user_projects_sb3`)) {
-          String.prototype.concat = concat;
-          return prompt(`作品想要保存至${url}，将其替换为`, url) ?? url;
+        const str = concat.call(this, ...args);
+        if (!(
+          str.startsWith(userSb3) && 
+          str.endsWith('.sb3')
+        )) {
+          return url;
         }
-        return url;
+        String.prototype.concat = concat;
+        let newUrl = prompt(`作品想要保存至${str}，将其替换为`, str) ?? str;
+        if(newUrl.startsWith("http")){
+          const url = new URL(newUrl);
+          newUrl = url.pathname.substring(1);
+        }
+        console.log(newUrl);
+        return newUrl;
       };
       return storeProject.call(this, url, project);
     };
