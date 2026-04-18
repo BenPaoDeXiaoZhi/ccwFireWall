@@ -1,4 +1,4 @@
-<script module>
+<script module lang="ts">
   const prefix = `
 const {stringify}=JSON;
 JSON.stringify=(dat)=>{
@@ -20,7 +20,7 @@ function run(){
 
   let input = $state("");
   let output = $derived.by(() => {
-    const patchedCode = `${prefix}${input}}`;
+    const patchedCode = `${prefix}${input}};`;
     const escaped = needEscape.reduce((code, char) => {
       return code.replaceAll(char, escapeAscii(char));
     }, patchedCode);
@@ -30,7 +30,12 @@ function run(){
 
 <li id="input">
   <label>
-    <textarea bind:value={input} rows="4" wrap="off">输入js代码</textarea>
+    <textarea
+      bind:value={input}
+      rows="4"
+      wrap="off"
+      onkeydown={(e) => e.stopPropagation()}>输入js代码</textarea
+    >
   </label>
 </li>
 <li id="output">
