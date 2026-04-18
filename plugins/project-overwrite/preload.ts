@@ -75,6 +75,7 @@ export function getStates() {
 let noAutoSave = true;
 export function setNoAutoSave(v: boolean) {
   noAutoSave = v;
+  console.log(fetcher, loader, writer);
 }
 
 if (get(config)["overwrite.enable"] && isInEditor) {
