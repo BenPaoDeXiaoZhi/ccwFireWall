@@ -103,7 +103,7 @@ if (get(config)["overwrite.enable"] && isInEditor) {
           str.startsWith(userSb3) && 
           str.endsWith('.sb3')
         )) {
-          return url;
+          return str;
         }
         String.prototype.concat = concat;
         let newUrl = prompt(`作品想要保存至${str}，将其替换为`, str) ?? str;
