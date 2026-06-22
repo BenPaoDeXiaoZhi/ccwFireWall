@@ -1,3 +1,4 @@
+/// <reference path="../node_modules/@turbowarp/types/index.d.ts">
 declare interface GandiRuntime extends VM.Runtime {
   extensionManager: GandiExtMgr;
 }

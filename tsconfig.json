@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "lib": ["DOM", "ESNext"],
     "target": "ES2022",
     "useDefineForClassFields": true,
@@ -9,7 +8,8 @@
       "scratch-vm": ["./node_modules/@turbowarp/types/index.d.ts"],
       "#*": ["./*"],
       "$lib": ["./html/src/lib"],
-      "$lib/*": ["./html/src/lib/*"]
+      "$lib/*": ["./html/src/lib/*"],
+      "@lucide/svelte/icons/*": ["./node_modules/@lucide/svelte/dist/icons/*"]
     },
     "noEmit": true,
     /**
@@ -20,11 +20,7 @@
      */
     "allowJs": true,
     "checkJs": true,
-    "typeRoots": [
-      "types",
-      "node_modules/@turbowarp/types",
-      "node_modules/@types"
-    ],
+    "typeRoots": ["types", "node_modules/@types"],
     "skipLibCheck": true
   },
   "include": ["monkey/src", "monkey", "types", "html"]

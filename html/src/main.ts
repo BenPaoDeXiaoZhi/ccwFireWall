@@ -3,7 +3,6 @@
 import { mount } from "svelte";
 import App from "./App.svelte";
 import "./app.css";
-import plugins from "../plugins/plugin-manifest";
 import { RPC } from "@mixer/postmessage-rpc";
 import { storeRPC } from "./rpc.store";
 import { RPC_Message } from "#enum.js";
@@ -12,11 +11,6 @@ const rootContainer = document.getElementById("root")!;
 
 const app = mount(App, {
   target: rootContainer,
-  props: {
-    plugins,
-    page: 0,
-    root: rootContainer,
-  },
 });
 
 if (opener) {

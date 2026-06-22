@@ -2,16 +2,6 @@
   import type { Plugin } from "./plugin";
   import NavBar from "./NavBar.svelte";
   import TooltipProvider from "./lib/components/ui/tooltip/tooltip-provider.svelte";
-
-  type Props = {
-    page: number;
-    plugins: Plugin[];
-    root: HTMLElement;
-  };
-  let { page = 0, plugins, root }: Props = $props();
-  let vm: GandiVM | undefined = $state.raw();
-  const currentPlugin = $derived(plugins[page]);
-  let headerHeight = $state(20);
 </script>
 
 <TooltipProvider>
