@@ -8,9 +8,9 @@
   "scripts": {
     "dev:html": "vite --config vite.html.config.ts",
     "dev:monkey": "vite --config vite.monkey.config.ts",
-    "build:html": "npm run check & vite build --mode production --config vite.html.config.ts",
-    "build:monkey": "npm run check & vite build --mode production --config vite.monkey.config.ts",
-    "build": "npm run build:html & npm run build:monkey",
+    "build:html": "vite build --mode production --config vite.html.config.ts",
+    "build:monkey": "vite build --mode production --config vite.monkey.config.ts",
+    "build": "npm run check & npm run build:html && npm run build:monkey",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
