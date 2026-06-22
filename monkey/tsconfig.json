@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "typeRoots": [
+      "../types",
+      "../node_modules/@types",
+      "../node_modules/vite",
+      "./types"
+    ],
+    "lib": ["ESNext"],
+    "types": ["global", "client"]
+  },
+  "include": ["./"]
+}

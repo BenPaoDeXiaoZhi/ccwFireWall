@@ -6,23 +6,41 @@
     "#*": "./*"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "npm run check & vite build --mode production",
+    "dev:html": "vite --config vite.html.config.ts",
+    "dev:monkey": "vite --config vite.monkey.config.ts",
+    "build:html": "npm run check & vite build --mode production --config vite.html.config.ts",
+    "build:monkey": "npm run check & vite build --mode production --config vite.monkey.config.ts",
+    "build": "npm run build:html & npm run build:monkey",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@internationalized/date": "^3.12.2",
+    "@lucide/svelte": "^1.21.0",
     "@sveltejs/vite-plugin-svelte": "^6.2.1",
     "@tsconfig/svelte": "^5.0.6",
     "@turbowarp/types": "^0.0.14",
     "@types/node": "^24.10.1",
     "@typescript-eslint/types": "^8.58.2",
+    "bits-ui": "^2.18.1",
+    "clsx": "^2.1.1",
+    "shadcn-svelte": "^1.3.0",
     "svelte": "^5.43.8",
     "svelte-check": "^4.3.4",
+    "tailwind-merge": "^3.6.0",
+    "tailwind-variants": "^3.2.2",
+    "tw-animate-css": "^1.4.0",
     "typescript": "~5.9.3",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
+    "@mixer/postmessage-rpc": "^1.1.4",
+    "@tailwindcss/vite": "^4.3.0",
+    "path": "^0.12.7",
+    "tailwindcss": "^4.3.0",
     "vite-plugin-monkey": "^7.1.9"
-  }
+  },
+  "sideEffects": false
 }

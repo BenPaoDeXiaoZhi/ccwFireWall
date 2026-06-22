@@ -10,9 +10,3 @@ declare interface GandiExtMgr extends VM.ExtensionManager {
   vm: GandiVM;
   _prepareExtensionInfo(name: string, info: any): any;
 }
-
-declare var unsafeWindow: Window & {
-  console: Console;
-};
-declare var GM_setValue: (name: string, v: any) => void;
-declare var GM_getValue: <T>(name: string, defaultValue?: T) => T | any;

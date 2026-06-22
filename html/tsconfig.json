@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": ["../types", "types"],
+    "types": ["global"]
+  },
+  "include": ["./"],
+  "resolve": {
+    "alias": {
+      "$lib": "./src/lib"
+    }
+  }
+}
