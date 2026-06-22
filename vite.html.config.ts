@@ -29,6 +29,6 @@ export default defineConfig(({ mode }) => {
         $lib: resolve(__dirname, "./html/src/lib"),
       },
     },
-    base: ".",
+    base: "./",
   };
 });
